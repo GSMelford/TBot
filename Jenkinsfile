@@ -31,7 +31,7 @@ pipeline {
                 script {
                     echo "=== packing $TBOT_CORE_NAME ==="
                     sh "/usr/share/dotnet/dotnet pack ./$TBOT_CORE_NAME/ -p:PackageVersion=$TBOT_CORE_VERSION --output ../nupkgs"
-                    sh "/usr/share/dotnet/dotnet nuget push ./nupkgs/$TBOT_CORE_NAME'.'$TBOT_CORE_VERSION -k $NUGET_KEY"
+                    sh "/usr/share/dotnet/dotnet nuget push ./nupkgs/$TBOT_CORE_NAME'.'$TBOT_CORE_VERSION'.'nupkg -k $NUGET_KEY"
                 }
             }
         }
@@ -40,7 +40,7 @@ pipeline {
                 script {
                     echo "=== packing $TBOT_CORE_NAME ==="
                     sh "/usr/share/dotnet/dotnet pack ./$TBOT_CORE_NAME/ -p:PackageVersion=$TBOT_TELEGRAM_DTO_VERSION --output ../nupkgs"
-                    sh "/usr/share/dotnet/dotnet nuget push ./nupkgs/$TBOT_CORE_NAME'.'$TBOT_TELEGRAM_DTO_VERSION -k $NUGET_KEY"
+                    sh "/usr/share/dotnet/dotnet nuget push ./nupkgs/$TBOT_CORE_NAME'.'$TBOT_TELEGRAM_DTO_VERSION'.'nupkg -k $NUGET_KEY"
                 }
             }
         }
@@ -49,7 +49,7 @@ pipeline {
                 script {
                     echo "=== packing $TBOT_CLIENT_NAME ==="
                     sh "/usr/share/dotnet/dotnet pack ./$TBOT_CLIENT_NAME/ -p:PackageVersion=$TBOT_CLIENT_VERSION --output ../nupkgs"
-                    sh "/usr/share/dotnet/dotnet nuget push ./nupkgs/$TBOT_CLIENT_NAME'.'$TBOT_CLIENT_VERSION -k $NUGET_KEY"
+                    sh "/usr/share/dotnet/dotnet nuget push ./nupkgs/$TBOT_CLIENT_NAME'.'$TBOT_CLIENT_VERSION'.'nupkg -k $NUGET_KEY"
                 }
             }
         }
