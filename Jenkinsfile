@@ -29,7 +29,7 @@ pipeline {
         stage("Pack TBot.Core") {
             steps {
                 echo "=== packing $TBOT_CORE_NAME ==="
-                sh "/usr/share/dotnet/dotnet pack ./$TBOT_CORE_NAME/ -p:PackageVersion=$TBOT_CORE_VERSION --output ../nupkgs"
+                sh "/usr/share/dotnet/dotnet pack"
             }
         }
         stage("Pack TBot.Telegram.Dto") {
