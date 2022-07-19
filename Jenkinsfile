@@ -26,7 +26,7 @@ pipeline {
                 }
             }
         }
-        stage("Pack $TBOT_CORE_NAME") {
+        stage("Pack $TBOT_TELEGRAM_DTO_NAME") {
             steps {
                 script {
                     echo "=== packing $TBOT_CORE_NAME ==="
