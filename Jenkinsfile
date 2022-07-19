@@ -17,7 +17,7 @@ pipeline {
     }
 
     stages {
-        stage("Pack $TBOT_CORE_NAME") {
+        stage("Pack TBot.Core") {
             steps {
                 script {
                     echo "=== packing $TBOT_CORE_NAME ==="
@@ -26,7 +26,7 @@ pipeline {
                 }
             }
         }
-        stage("Pack $TBOT_TELEGRAM_DTO_NAME") {
+        stage("Pack TBot.Telegram.Dto") {
             steps {
                 script {
                     echo "=== packing $TBOT_CORE_NAME ==="
@@ -35,7 +35,7 @@ pipeline {
                 }
             }
         }
-        stage("Pack $TBOT_CLIENT_NAME") {
+        stage("Pack TBot.Client") {
             steps {
                 script {
                     echo "=== packing $TBOT_CLIENT_NAME ==="
