@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     echo "=== building TBot ==="
-                    sh "dotnet -version"
+                    sh "dotnet --version"
                     sh "dotnet build"
                 }
             }
