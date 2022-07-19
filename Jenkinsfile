@@ -28,11 +28,9 @@ pipeline {
         }
         stage("Pack TBot.Core") {
             steps {
-                script {
-                    echo "=== packing $TBOT_CORE_NAME ==="
-                    sh "/usr/share/dotnet/dotnet pack ./$TBOT_CORE_NAME/ -p:PackageVersion=$TBOT_CORE_VERSION --output ../nupkgs"
-                    sh "/usr/share/dotnet/dotnet nuget push ./nupkgs/$TBOT_CORE_NAME'.'$TBOT_CORE_VERSION'.'nupkg -k $NUGET_KEY"
-                }
+                echo "=== packing $TBOT_CORE_NAME ==="
+                sh "/usr/share/dotnet/dotnet pack ./$TBOT_CORE_NAME/ -p:PackageVersion=$TBOT_CORE_VERSION --output ../nupkgs"
+                //sh "/usr/share/dotnet/dotnet nuget push ./nupkgs/$TBOT_CORE_NAME'.'$TBOT_CORE_VERSION'.'nupkg -k $NUGET_KEY"
             }
         }
         stage("Pack TBot.Telegram.Dto") {
