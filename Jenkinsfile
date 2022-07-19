@@ -17,6 +17,14 @@ pipeline {
     }
 
     stages {
+        stage("Build") {
+            steps {
+                script {
+                    echo "=== building TBot ==="
+                    sh "dotnet build"
+                }
+            }
+        }
         stage("Pack TBot.Core") {
             steps {
                 script {

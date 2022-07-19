@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
@@ -7,7 +7,7 @@
         <Version>0.2.4</Version>
         <Authors>gsMelford, Squik, Zvesdochyot</Authors>
         <Company>TBotProject</Company>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
         <PackageId>TBot.Client</PackageId>
         <Title>TBot.Client</Title>
         <RepositoryUrl>https://github.com/GSMelford/TBot</RepositoryUrl>

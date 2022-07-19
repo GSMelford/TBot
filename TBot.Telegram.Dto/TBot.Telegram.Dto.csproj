@@ -7,7 +7,7 @@
         <Version>0.1.1</Version>
         <Authors>gsMelford, Squik, Zvesdochyot</Authors>
         <Company>TBotProject</Company>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <PackageId>TBot.Telegram.Dto</PackageId>
         <Title>TBot.Telegram.Dto</Title>
         <RepositoryUrl>https://github.com/GSMelford/TBot</RepositoryUrl>
