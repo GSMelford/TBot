@@ -2,11 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TBot.Core", "TBot.Core\TBot.Core.csproj", "{D3AAC838-48E9-4692-ABE4-A4A2F33CBD9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TBot.Api", "TBot.Api\TBot.Api.csproj", "{B22C6458-3B05-40CA-83C4-B46A23DB0AEA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TBot.Client", "TBot.Client\TBot.Client.csproj", "{F20388CB-C47F-4F15-87D8-7D81083157BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telegram.Dto", "Telegram.Dto\Telegram.Dto.csproj", "{FEAB7B7D-EE2F-41BE-96E1-7A38D7AB35F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TBot.Telegram.Dto", "TBot.Telegram.Dto\TBot.Telegram.Dto.csproj", "{0ECE6199-EDED-4250-97C7-9C00EA548697}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,17 +16,13 @@ Global
 		{D3AAC838-48E9-4692-ABE4-A4A2F33CBD9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3AAC838-48E9-4692-ABE4-A4A2F33CBD9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3AAC838-48E9-4692-ABE4-A4A2F33CBD9F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B22C6458-3B05-40CA-83C4-B46A23DB0AEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B22C6458-3B05-40CA-83C4-B46A23DB0AEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B22C6458-3B05-40CA-83C4-B46A23DB0AEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B22C6458-3B05-40CA-83C4-B46A23DB0AEA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F20388CB-C47F-4F15-87D8-7D81083157BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F20388CB-C47F-4F15-87D8-7D81083157BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F20388CB-C47F-4F15-87D8-7D81083157BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F20388CB-C47F-4F15-87D8-7D81083157BD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FEAB7B7D-EE2F-41BE-96E1-7A38D7AB35F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FEAB7B7D-EE2F-41BE-96E1-7A38D7AB35F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FEAB7B7D-EE2F-41BE-96E1-7A38D7AB35F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FEAB7B7D-EE2F-41BE-96E1-7A38D7AB35F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ECE6199-EDED-4250-97C7-9C00EA548697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ECE6199-EDED-4250-97C7-9C00EA548697}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ECE6199-EDED-4250-97C7-9C00EA548697}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ECE6199-EDED-4250-97C7-9C00EA548697}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

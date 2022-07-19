@@ -1,16 +1,16 @@
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using TBot.Api.Telegram.DeleteMessage;
-using TBot.Api.Telegram.EditMessage;
-using TBot.Api.Telegram.GetFile;
-using TBot.Api.Telegram.GetFileBytes;
-using TBot.Api.Telegram.GetUpdates;
-using TBot.Api.Telegram.SendMessage;
-using TBot.Api.Telegram.SendVideo;
+using TBot.Client.Api.Telegram.DeleteMessage;
+using TBot.Client.Api.Telegram.EditMessage;
+using TBot.Client.Api.Telegram.GetFile;
+using TBot.Client.Api.Telegram.GetFileBytes;
+using TBot.Client.Api.Telegram.GetUpdates;
+using TBot.Client.Api.Telegram.SendMessage;
+using TBot.Client.Api.Telegram.SendVideo;
 using TBot.Core.Interfaces;
-using Telegram.Dto.Response;
-using Telegram.Dto.UpdateModule;
+using TBot.Telegram.Dto.Response;
+using TBot.Telegram.Dto.UpdateModule;
 
 namespace TBot.Client;
 
