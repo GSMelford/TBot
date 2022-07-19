@@ -26,7 +26,7 @@ pipeline {
         stage("Publich TBot") {
             steps {
                 echo "=== publishing ==="
-                sh "/usr/share/dotnet/dotnet nuget push "'*.nupkg'" --api-key $NUGET_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate"
+                sh "/usr/share/dotnet/dotnet nuget push \"*.nupkg\" --api-key $NUGET_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate"
             }
         }
     }
