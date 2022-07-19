@@ -9,7 +9,7 @@ pipeline {
 
     environment {
         TBOT_CORE_NAME = "TBot.Core"
-        TBOT_CORE_VERSION = "0.1.2"
+        TBOT_CORE_VERSION = "0.1.3"
         TBOT_TELEGRAM_DTO_NAME = "TBot.Telegram.Dto"
         TBOT_TELEGRAM_DTO_VERSION = "0.1.2"
         TBOT_CLIENT_NAME = "TBot.Client"
