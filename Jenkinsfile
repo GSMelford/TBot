@@ -11,7 +11,7 @@ pipeline {
         stage("Build TBot") {
             steps {
                 script {
-                    echo "=== building TBot ==="
+                    echo "=== building ==="
                     sh "/usr/share/dotnet/dotnet --version"
                     sh "/usr/share/dotnet/dotnet build"
                 }
@@ -25,7 +25,7 @@ pipeline {
         }
         stage("Publich TBot") {
             steps {
-                echo "=== packing $TBOT_CORE_NAME ==="
+                echo "=== publishing ==="
                 sh "/usr/share/dotnet/dotnet nuget push \"*.nupkg\" --api-key $NUGET_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate"
             }
         }
