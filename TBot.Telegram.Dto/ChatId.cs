@@ -2,9 +2,9 @@ namespace TBot.Telegram.Dto;
 
 public class ChatId
 {
-    private readonly long _identifier;
+    private readonly long? _identifier;
 
-    private readonly string _username;
+    private readonly string? _username;
 
     private ChatId(string username)
     {
@@ -18,15 +18,15 @@ public class ChatId
         
     public static implicit operator ChatId(long identifier)
     {
-        return new(identifier);
+        return new ChatId(identifier);
     }
         
     public static implicit operator ChatId(string username)
     {
-        return new(username);
+        return new ChatId(username);
     }
 
-    public override string ToString()
+    public override string? ToString()
     {
         return _username ?? _identifier.ToString();
     }

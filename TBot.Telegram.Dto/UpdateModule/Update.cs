@@ -8,17 +8,17 @@ public class Update
     public int UpdateId { get; set; }
         
     [JsonProperty("message")]
-    public Message Message { get; set; }
+    public Message? Message { get; set; }
         
     [JsonProperty("inline_query")]
-    public InlineQuery InlineQuery { get; set; }
+    public InlineQuery? InlineQuery { get; set; }
         
     [JsonProperty("chosen_inline_result")]
-    public ChosenInlineResult ChosenInlineResult { get; set; }
+    public ChosenInlineResult? ChosenInlineResult { get; set; }
         
     [JsonProperty("callback_query")]
-    public CallbackQuery CallbackQuery { get; set; }
+    public CallbackQuery? CallbackQuery { get; set; }
         
     [JsonProperty("edited_message")]
-    public EditedMessage EditedMessage { get; set; }
+    public EditedMessage? EditedMessage { get; set; }
 }

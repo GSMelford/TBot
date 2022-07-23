@@ -6,8 +6,8 @@ namespace TBot.Telegram.Dto.Response;
 public class UpdateResponse
 {
     [JsonProperty("ok")] 
-    public string Ok { get; set; }
+    public string? Ok { get; set; }
         
     [JsonProperty("result")] 
-    public List<Update> Result { get; set; }
+    public List<Update>? Result { get; set; }
 }

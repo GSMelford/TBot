@@ -8,11 +8,11 @@ public class User
     public long Id { get; set; }
         
     [JsonProperty("first_name")]
-    public string FirstName { get; set; }
+    public string? FirstName { get; set; }
         
     [JsonProperty("last_name")]
-    public string LastName { get; set; }
+    public string? LastName { get; set; }
         
     [JsonProperty("username")]
-    public string Username { get; set; }
+    public string? Username { get; set; }
 }

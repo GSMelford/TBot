@@ -5,17 +5,17 @@ namespace TBot.Telegram.Dto;
 public class Photo
 {
     [JsonProperty("file_id")]
-    public string FileId { get; set; }
+    public string? FileId { get; set; }
         
     [JsonProperty("file_unique_id")]
-    public string FileUniqueId { get; set; }
+    public string? FileUniqueId { get; set; }
         
     [JsonProperty("file_size")]
-    public string FileSize { get; set; }
+    public string? FileSize { get; set; }
         
     [JsonProperty("width")]
-    public string Width { get; set; }
+    public string? Width { get; set; }
         
     [JsonProperty("height")]
-    public string Height { get; set; }
+    public string? Height { get; set; }
 }
