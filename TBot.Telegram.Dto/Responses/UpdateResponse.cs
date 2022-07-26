@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using Newtonsoft.Json;
-using TBot.Telegram.Dto.UpdateModule;
 
-namespace TBot.Telegram.Dto.Response;
+namespace TBot.Telegram.Dto.Responses;
 
 public class UpdateResponse
 {

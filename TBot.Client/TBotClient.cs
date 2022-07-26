@@ -9,21 +9,22 @@ using TBot.Client.Api.Telegram.GetUpdates;
 using TBot.Client.Api.Telegram.SendMessage;
 using TBot.Client.Api.Telegram.SendVideo;
 using TBot.Core.Interfaces;
-using TBot.Telegram.Dto.Response;
+using TBot.Telegram.Dto;
+using TBot.Telegram.Dto.Responses;
 using TBot.Telegram.Dto.UpdateModule;
 
 namespace TBot.Client;
 
 public class TBotClient : ITBot
 {
-    private readonly ILogger? _logger;
+    private readonly ILogger<ITBot>? _logger;
     private readonly HttpClient _httpClient;
     
     private readonly string _botToken;
     private const string API_URL = "https://api.telegram.org/";
     private string BotTokenPath => $"bot{_botToken}/";
     
-    public TBotClient(string botToken, HttpClient httpClient, ILogger? logger = null)
+    public TBotClient(string botToken, HttpClient httpClient, ILogger<ITBot>? logger = null)
     {
         _botToken = botToken;
         _httpClient = httpClient;
@@ -72,12 +73,9 @@ public class TBotClient : ITBot
 
     private async Task<HttpResponseMessage> DoRequestAsync(HttpClient httpClient, IExecutable request)
     {
-        _logger?.LogInformation("Sending {Type} Request", request.GetType());
+        _logger?.LogDebug("Sending {Type} Request", request.GetType());
         HttpResponseMessage response = await request.Execute(httpClient);
-        
-        _logger?.LogInformation(
-            "Sent {Type} Request. StatusCode: {StatusCode}", request.GetType(), response.StatusCode.ToString());
-
+        _logger?.LogDebug("Sent {Type} Request. StatusCode: {StatusCode}", request.GetType(), response.StatusCode.ToString());
         return response;
     }
 }

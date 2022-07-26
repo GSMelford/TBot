@@ -4,6 +4,7 @@ using TBot.Client.Api.Telegram.GetFile;
 using TBot.Client.Api.Telegram.GetUpdates;
 using TBot.Client.Api.Telegram.SendMessage;
 using TBot.Client.Api.Telegram.SendVideo;
+using TBot.Telegram.Dto;
 using TBot.Telegram.Dto.UpdateModule;
 
 namespace TBot.Client;

@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
+using TBot.Telegram.Dto.UpdateModule;
 
-namespace TBot.Telegram.Dto.UpdateModule;
+namespace TBot.Telegram.Dto;
 
 public class Update
 {
@@ -18,7 +19,7 @@ public class Update
         
     [JsonProperty("callback_query")]
     public CallbackQuery? CallbackQuery { get; set; }
-        
+    
     [JsonProperty("edited_message")]
     public EditedMessage? EditedMessage { get; set; }
 }

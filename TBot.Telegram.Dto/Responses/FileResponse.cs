@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace TBot.Telegram.Dto.Response;
+namespace TBot.Telegram.Dto.Responses;
 
 public class FileResponse
 {
