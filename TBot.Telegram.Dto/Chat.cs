@@ -8,7 +8,7 @@ public class Chat
     public long Id { get; set; }
     
     [JsonProperty("type")]
-    public ChatType Type { get; set; }
+    public string Type { get; set; }
     
     [JsonProperty("title")]
     public string? Title { get; set; }
@@ -24,16 +24,4 @@ public class Chat
     
     [JsonProperty("all_members_are_administrators")]
     public bool? AllMembersAreAdministrators { get; set; }
-}
-
-public enum ChatType
-{
-    [JsonProperty("private")]
-    Private,
-    [JsonProperty("private")]
-    Group,
-    [JsonProperty("supergroup")]
-    Supergroup,
-    [JsonProperty("channel")]
-    Channel,
 }
