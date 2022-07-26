@@ -1,3 +1,5 @@
+using System;
+
 namespace TBot.Telegram.Dto.SendMessage.ReplyMarkup.Abstracts;
 
 public abstract class Keyboard<TButton> : ReplyMarkup where TButton : Button

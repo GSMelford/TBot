@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace TBot.Telegram.Dto.SendMessage.ReplyMarkup.Abstracts;
 
 public class KeyboardRaw<TButtons> where TButtons : Button
@@ -8,7 +10,7 @@ public class KeyboardRaw<TButtons> where TButtons : Button
     {
         ButtonsList.Add(inlineKeyboardButton);
     }
-        
+    
     public void AddButtons(IEnumerable<TButtons> inlineKeyboardButtons)
     {
         ButtonsList.AddRange(inlineKeyboardButtons);
