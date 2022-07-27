@@ -1,18 +1,18 @@
-using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc;
 
 namespace TBot.Telegram.Dto;
 
 public class User
 {
-    [JsonProperty("id")]
+    [BindProperty(Name = "id")]
     public long Id { get; set; }
         
-    [JsonProperty("first_name")]
+    [BindProperty(Name = "first_name")]
     public string FirstName { get; set; }
         
-    [JsonProperty("last_name")]
+    [BindProperty(Name = "last_name")]
     public string? LastName { get; set; }
         
-    [JsonProperty("username")]
+    [BindProperty(Name = "username")]
     public string? Username { get; set; }
 }
