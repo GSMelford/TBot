@@ -1,97 +1,96 @@
-using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace TBot.Telegram.Dto.UpdateModule;
 
 public class Message
 {
-    [JsonProperty("message_id")]
+    [JsonPropertyName("message_id")]
     public int MessageId { get; set; }
     
-    [JsonProperty("from")]
+    [JsonPropertyName("from")]
     public User? From { get; set; }
     
-    [JsonProperty("date")]
+    [JsonPropertyName("date")]
     public int Date { get; set; }
 
-    [JsonProperty("chat")] 
+    [JsonPropertyName("chat")] 
     public Chat Chat { get; set; } = null!;
     
-    [JsonProperty("forward_from")]
+    [JsonPropertyName("forward_from")]
     public User? ForwardFromUser { get; set; }
     
-    [JsonProperty("forward_date")]
+    [JsonPropertyName("forward_date")]
     public int? ForwardDate { get; set; }
     
-    [JsonProperty("migrate_to_chat_id")]
+    [JsonPropertyName("migrate_to_chat_id")]
     public int? MigrateToChatId { get; set; }
     
-    [JsonProperty("migrate_from_chat_id")]
+    [JsonPropertyName("migrate_from_chat_id")]
     public int? MigrateFromChatId { get; set; }
     
-    [JsonProperty("text")]
+    [JsonPropertyName("text")]
     public string? Text { get; set; }
     
-    [JsonProperty("caption")]
+    [JsonPropertyName("caption")]
     public string? Caption { get; set; }
     
-    [JsonProperty("new_chat_title")]
+    [JsonPropertyName("new_chat_title")]
     public string? NewChatTitle { get; set; }
     
-    [JsonProperty("delete_chat_photo")]
+    [JsonPropertyName("delete_chat_photo")]
     public bool? DeleteChatPhoto { get; set; }
     
-    [JsonProperty("group_chat_created")]
+    [JsonPropertyName("group_chat_created")]
     public bool? GroupChatCreated { get; set; }
     
-    [JsonProperty("supergroup_chat_created")]
+    [JsonPropertyName("supergroup_chat_created")]
     public bool? SupergroupChatCreated { get; set; }
     
-    [JsonProperty("channel_chat_created")]
+    [JsonPropertyName("channel_chat_created")]
     public bool? ChannelChatCreated { get; set; }
     
-    [JsonProperty("new_chat_member")]
+    [JsonPropertyName("new_chat_member")]
     public User? NewChatMember { get; set; }
     
-    [JsonProperty("left_chat_member")]
+    [JsonPropertyName("left_chat_member")]
     public User? LeftChatMember { get; set; }
     
-    [JsonProperty("pinned_message")]
+    [JsonPropertyName("pinned_message")]
     public Message? PinnedMessage { get; set; }
     
-    [JsonProperty("reply_to_message")]
+    [JsonPropertyName("reply_to_message")]
     public Message? ReplyToMessage { get; set; }
     
-    [JsonProperty("audio")]
+    [JsonPropertyName("audio")]
     public Audio? Audio { get; set; }
     
-    [JsonProperty("document")]
+    [JsonPropertyName("document")]
     public Document? Document { get; set; }
     
-    [JsonProperty("sticker")]
+    [JsonPropertyName("sticker")]
     public Sticker? Sticker { get; set; }
     
-    [JsonProperty("video")]
+    [JsonPropertyName("video")]
     public Video? Video { get; set; }
     
-    [JsonProperty("voice")]
+    [JsonPropertyName("voice")]
     public Voice? Voice { get; set; }
     
-    [JsonProperty("contact")]
+    [JsonPropertyName("contact")]
     public Contact? Contact { get; set; }
     
-    [JsonProperty("location")]
+    [JsonPropertyName("location")]
     public Location? Location { get; set; }
     
-    [JsonProperty("venue")]
+    [JsonPropertyName("venue")]
     public Venue? Venue { get; set; }
     
-    [JsonProperty("entities")]
+    [JsonPropertyName("entities")]
     public List<MessageEntity>? Entities { get; set; }
     
-    [JsonProperty("new_chat_photo")]
+    [JsonPropertyName("new_chat_photo")]
     public List<PhotoSize>? NewChatPhoto { get; set; }
     
-    [JsonProperty("photo")]
+    [JsonPropertyName("photo")]
     public List<Photo>? Photos { get; set; }
 }

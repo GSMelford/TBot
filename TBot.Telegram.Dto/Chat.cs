@@ -1,27 +1,27 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace TBot.Telegram.Dto;
 
 public class Chat
 {
-    [JsonProperty("id")]
+    [JsonPropertyName("id")]
     public long Id { get; set; }
     
-    [JsonProperty("type")]
+    [JsonPropertyName("type")]
     public string Type { get; set; }
     
-    [JsonProperty("title")]
+    [JsonPropertyName("title")]
     public string? Title { get; set; }
     
-    [JsonProperty("username")]
+    [JsonPropertyName("username")]
     public string? Username { get; set; }
     
-    [JsonProperty("first_name")]
+    [JsonPropertyName("first_name")]
     public string? FirstName { get; set; }
     
-    [JsonProperty("last_name")]
+    [JsonPropertyName("last_name")]
     public string? LastName { get; set; }
     
-    [JsonProperty("all_members_are_administrators")]
+    [JsonPropertyName("all_members_are_administrators")]
     public bool? AllMembersAreAdministrators { get; set; }
 }
