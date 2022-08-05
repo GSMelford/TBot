@@ -1,4 +1,4 @@
-﻿namespace TBot.Client;
+﻿namespace TBot.Core;
 
 public class SendRequestLimiter
 {
