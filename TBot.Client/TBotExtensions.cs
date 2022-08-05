@@ -7,10 +7,7 @@ public static class TBotExtensions
 {
     public static void AddTBotClient(this IServiceCollection serviceCollection, string botToken)
     {
-        serviceCollection.AddTransient<ITBot, TBotClient>(provider => 
-            new TBotClient(
-                botToken, 
-                provider.GetRequiredService<HttpClient>(), 
-                provider.GetRequiredService<ILogger<ITBot>>()));
+        serviceCollection.AddSingleton<ITBot, TBotClient>(provider => 
+            new TBotClient(botToken, provider.GetRequiredService<ILogger<ITBot>>()));
     }
 }

@@ -5,17 +5,16 @@ using TBot.Client.Api.Telegram.GetUpdates;
 using TBot.Client.Api.Telegram.SendMessage;
 using TBot.Client.Api.Telegram.SendVideo;
 using TBot.Telegram.Dto;
-using TBot.Telegram.Dto.UpdateModule;
 
 namespace TBot.Client;
 
 public interface ITBot
 {
-    Task<List<Update>> GetUpdates(GetUpdatesParameters getUpdatesParameters);
-    Task<HttpResponseMessage> SendMessageAsync(SendMessageParameters sendMessageParameters);
-    Task<HttpResponseMessage> SendVideoAsync(SendVideoParameters sendVideoParameters);
-    Task<HttpResponseMessage> DeleteMessageAsync(DeleteMessageParameters deleteMessageParameters);
-    Task<HttpResponseMessage> EditMessageAsync(EditMessageParameters editMessageParameters);
-    Task<HttpResponseMessage> GetFileAsync(GetFileParameters getFileParameters);
-    Task<HttpResponseMessage> GetFileBytes(string telegramFilePath);
+    Task<List<Update>> GetUpdates(GetUpdatesParameters getUpdatesParameters, HttpClient? httpClient = null);
+    Task<HttpResponseMessage> SendMessageAsync(SendMessageParameters sendMessageParameters, HttpClient? httpClient = null);
+    Task<HttpResponseMessage> SendVideoAsync(SendVideoParameters sendVideoParameters, HttpClient? httpClient = null);
+    Task<HttpResponseMessage> DeleteMessageAsync(DeleteMessageParameters deleteMessageParameters, HttpClient? httpClient = null);
+    Task<HttpResponseMessage> EditMessageAsync(EditMessageParameters editMessageParameters, HttpClient? httpClient = null);
+    Task<HttpResponseMessage> GetFileAsync(GetFileParameters getFileParameters, HttpClient? httpClient = null);
+    Task<HttpResponseMessage> GetFileBytes(string telegramFilePath, HttpClient? httpClient = null);
 }

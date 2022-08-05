@@ -1,3 +1,5 @@
+using System;
+
 namespace TBot.Telegram.Dto;
 
 public class ChatId
@@ -26,8 +28,8 @@ public class ChatId
         return new ChatId(username);
     }
 
-    public override string? ToString()
+    public override string ToString()
     {
-        return _username ?? _identifier.ToString();
+        return _username ?? _identifier.ToString() ?? throw new Exception("Chat Id not set");
     }
 }
