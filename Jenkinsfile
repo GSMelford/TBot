@@ -21,7 +21,7 @@ pipeline {
         stage("Pack TBot") {
             steps {
                 echo "=== packing ==="
-                sh "sudo dotnet pack --output nupkgs"
+                sh "sudo dotnet pack"
             }
         }
         stage("Publich TBot") {
