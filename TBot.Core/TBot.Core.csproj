@@ -15,7 +15,7 @@
         <Product>TBot</Product>
         <LangVersion>11</LangVersion>
         <IsPackable>true</IsPackable>
-        <OutputPath>nupkgs</OutputPath>
+        <OutputPath>../nupkgs</OutputPath>
     </PropertyGroup>
     
     <ItemGroup>

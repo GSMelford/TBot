@@ -8,6 +8,14 @@ pipeline {
     }
 
     stages {
+        stage("Prepare TBot") {
+            steps {
+                script {
+                    sh "cd /var/lib/jenkins/workspace/TBot/"
+                    sh "sudo rm -rf nupkgs"
+                }
+            }
+        }
         stage("Build TBot") {
             steps {
                 script {
