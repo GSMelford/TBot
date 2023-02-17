@@ -14,8 +14,9 @@
         <RootNamespace>TBot.Core</RootNamespace>
         <Product>TBot</Product>
         <LangVersion>11</LangVersion>
+        <IsPackable>true</IsPackable>
     </PropertyGroup>
-
+    
     <ItemGroup>
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
