@@ -4,16 +4,11 @@
 public class ParameterAttribute : Attribute
 {
     public string Name { get; }
-    public bool IsRequired { get; }
-    public UrlEncode IsEncode { get; }
+    public bool Required { get; set; } 
+    public UrlEncode IsEncode { get; set; }
         
-    public ParameterAttribute(
-        string name, 
-        bool isRequired = false, 
-        UrlEncode isEncode = UrlEncode.NoEncode)
+    public ParameterAttribute(string name)
     {
         Name = name;
-        IsRequired = isRequired;
-        IsEncode = isEncode;
     }
 }

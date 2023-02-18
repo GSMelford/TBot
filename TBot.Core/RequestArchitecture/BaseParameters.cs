@@ -24,7 +24,7 @@ public class BaseParameters
             {
                 yield return new Parameter(attribute.Name, value, attribute.IsEncode);
             }
-            else if(attribute.IsRequired)
+            else if(attribute.Required)
             {
                 throw new DiscrepancyException($"Required property not set on property: {property.Name}");
             }

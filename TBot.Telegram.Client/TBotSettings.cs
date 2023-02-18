@@ -1,6 +1,6 @@
 namespace TBot.Client;
 
-public class TBotSettings
+public class BotSettings
 {
     public string TelegramBotToken { get; set; } = null!;
 }

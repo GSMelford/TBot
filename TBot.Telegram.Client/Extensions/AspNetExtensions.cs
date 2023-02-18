@@ -7,11 +7,11 @@ namespace TBot.Client.Extensions;
 
 public static class AspNetExtensions
 {
-    public static IServiceCollection AddTelegramTBot(this IServiceCollection serviceCollection, TBotSettings botSettings)
+    public static IServiceCollection AddTelegramTBot(this IServiceCollection serviceCollection, BotSettings botSettings)
     {
         return serviceCollection
             .AddSingleton(botSettings)
-            .AddTransient<ITBot, TBotClient>()
+            .AddTransient<ITBot, BotClient>()
             .AddTransient<ITBotRequestService, TBotRequestService>();
     }
 }

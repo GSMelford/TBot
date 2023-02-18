@@ -1,22 +1,20 @@
-using TBot.Client.Api.DeleteMessage;
-using TBot.Client.Api.EditMessage;
-using TBot.Client.Api.GetUpdates;
-using TBot.Client.Api.SendMessage;
-using TBot.Client.Api.SendVideo;
 using TBot.Client.Interfaces;
+using TBot.Client.Requests;
 using TBot.Core.RequestArchitecture.Interfaces;
+using TBot.Telegram.Dto.Methods;
+using TBot.Telegram.Dto.Updates.Methods;
 
 namespace TBot.Client;
 
-public class TBotClient : ITBot
+public class BotClient : ITBot
 {
     private const string API_URL = "https://api.telegram.org";
     private readonly ITBotRequestService _itBotRequestService;
     
-    private readonly TBotSettings _botToken;
+    private readonly BotSettings _botToken;
     private string BaseUrl => $"{API_URL}/bot{_botToken.TelegramBotToken}";
 
-    public TBotClient(TBotSettings botSettings, ITBotRequestService itBotRequestService)
+    public BotClient(BotSettings botSettings, ITBotRequestService itBotRequestService)
     {
         _botToken = botSettings;
         _itBotRequestService = itBotRequestService;
@@ -28,30 +26,32 @@ public class TBotClient : ITBot
             new SendMessageRequest(BaseUrl, sendMessageParameters).ToHttpRequestMessage());
     }
 
-    public Task<HttpResponseMessage> SendVideoAsync(SendVideoParameters sendVideoParameters)
-    {
-        return _itBotRequestService.SendAsync(
-            new SendVideoRequest(BaseUrl, sendVideoParameters).ToHttpRequestMessage());
-    }
-
-    public Task<HttpResponseMessage> EditMessageAsync(EditMessageParameters editMessageParameters)
-    {
-        return _itBotRequestService.SendAsync(
-            new SendMessageRequest(BaseUrl, editMessageParameters).ToHttpRequestMessage());
-    }
-    
     public Task<HttpResponseMessage> DeleteMessageAsync(DeleteMessageParameters deleteMessageParameters)
     {
         return _itBotRequestService.SendAsync(
             new SendMessageRequest(BaseUrl, deleteMessageParameters).ToHttpRequestMessage());
     }
     
-    public Task<HttpResponseMessage> GetUpdatesAsync(GetUpdatesParameter getUpdatesParameter)
+    public Task<HttpResponseMessage> GetUpdatesAsync(GetUpdatesParameters getUpdatesParameters)
     {
         return _itBotRequestService.SendAsync(
-            new GetUpdatesRequest(BaseUrl, getUpdatesParameter).ToHttpRequestMessage());
+            new GetUpdatesRequest(BaseUrl, getUpdatesParameters).ToHttpRequestMessage());
     }
     
+    public Task<HttpResponseMessage> DeleteWebhookAsync(DeleteWebhookParameters deleteWebhookParameters)
+    {
+        return _itBotRequestService.SendAsync(
+            new DeleteMessageRequest(BaseUrl, deleteWebhookParameters).ToHttpRequestMessage());
+    }
+    
+    public Task<HttpResponseMessage> SetWebhookAsync(SetWebhookParameters setWebhookParameters)
+    {
+        return _itBotRequestService.SendAsync(
+            new SetWebhookRequest(BaseUrl, setWebhookParameters).ToHttpRequestMessage());
+    }
+    
+    //TODO: getWebhookInfo - Don't Forget About Method Development. Watch here => https://core.telegram.org/bots/api#getwebhookinfo
+
     //TODO: Move to other class
     /*private async Task<HttpResponseMessage> DoRequestWithLimiterAsync(HttpClient? httpClient, IRequestSenderService request, string chatId)
     {
