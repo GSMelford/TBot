@@ -1,6 +1,4 @@
-﻿using TBot.Core.RequestArchitecture.Structure;
-
-namespace TBot.Core.Attributes;
+﻿namespace TBot.Core.RequestArchitecture.Structure;
 
 [AttributeUsage(AttributeTargets.Property)]
 public class ParameterAttribute : Attribute

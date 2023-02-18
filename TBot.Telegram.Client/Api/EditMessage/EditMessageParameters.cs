@@ -1,10 +1,10 @@
-using TBot.Core.Attributes;
 using TBot.Core.RequestArchitecture;
+using TBot.Core.RequestArchitecture.Structure;
 using TBot.Telegram.Dto;
 
-namespace TBot.Client.Api.Telegram.EditMessage;
+namespace TBot.Client.Api.EditMessage;
 
-public class EditMessageParameter : BaseParameters
+public class EditMessageParameters : BaseParameters
 {
     [Parameter("chat_id", true)] 
     public ChatId ChatId { get; set; }

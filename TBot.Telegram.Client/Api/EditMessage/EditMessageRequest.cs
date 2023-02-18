@@ -1,14 +1,13 @@
-using TBot.Core;
 using TBot.Core.RequestArchitecture;
 
-namespace TBot.Client.Api.Telegram.EditMessage;
+namespace TBot.Client.Api.EditMessage;
 
-public class EditMessageBaseRequest : BaseRequest
+public class EditMessageRequest : BaseRequest
 {
     protected override string MethodName => "editMessageText";
     protected override HttpMethod Method => HttpMethod.Get;
         
-    public EditMessageBaseRequest(string baseUrl, BaseParameters? parameters = null) 
+    public EditMessageRequest(string baseUrl, BaseParameters? parameters = null) 
         : base(baseUrl, null, parameters)
     {
     }

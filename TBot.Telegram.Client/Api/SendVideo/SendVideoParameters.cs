@@ -1,10 +1,10 @@
-﻿using TBot.Core.Attributes;
-using TBot.Core.RequestArchitecture;
+﻿using TBot.Core.RequestArchitecture;
+using TBot.Core.RequestArchitecture.Structure;
 using TBot.Telegram.Dto;
 
-namespace TBot.Client.Api.Telegram.SendVideo;
+namespace TBot.Client.Api.SendVideo;
 
-public class SendVideoParameter : BaseParameters
+public class SendVideoParameters : BaseParameters
 {
     [Parameter("chat_id", true)]
     public ChatId ChatId { get; set; }

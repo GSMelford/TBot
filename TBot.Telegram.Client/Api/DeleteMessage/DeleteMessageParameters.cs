@@ -1,10 +1,10 @@
-﻿using TBot.Core.Attributes;
-using TBot.Core.RequestArchitecture;
+﻿using TBot.Core.RequestArchitecture;
+using TBot.Core.RequestArchitecture.Structure;
 using TBot.Telegram.Dto;
 
-namespace TBot.Client.Api.Telegram.DeleteMessage;
+namespace TBot.Client.Api.DeleteMessage;
 
-public class DeleteMessageParameter : BaseParameters
+public class DeleteMessageParameters : BaseParameters
 {
     [Parameter("chat_id", true)] 
     public ChatId ChatId { get; set; }

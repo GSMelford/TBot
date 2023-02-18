@@ -1,7 +1,7 @@
-using TBot.Core.Attributes;
 using TBot.Core.RequestArchitecture;
+using TBot.Core.RequestArchitecture.Structure;
 
-namespace TBot.Client.Api.Telegram.GetUpdates;
+namespace TBot.Client.Api.GetUpdates;
 
 public class GetUpdatesParameter : BaseParameters
 {

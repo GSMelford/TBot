@@ -1,22 +1,21 @@
 ﻿using System.Text;
-using TBot.Core;
 using TBot.Core.RequestArchitecture;
 using TBot.Core.RequestArchitecture.Structure;
 using TBot.Core.Utilities;
 
-namespace TBot.Client.Api.Telegram.SendVideo;
+namespace TBot.Client.Api.SendVideo;
 
-public class SendVideoBaseRequest : BaseRequest
+public class SendVideoRequest : BaseRequest
 {
     protected override string MethodName => "sendVideo";
     protected override HttpMethod Method => HttpMethod.Post;
         
-    public SendVideoBaseRequest(string baseUrl, BaseParameters parameter) 
+    public SendVideoRequest(string baseUrl, BaseParameters parameter) 
         : base(baseUrl, null, parameter)
     {
     }
     
-    protected override HttpRequestMessage ToHttpRequestMessage() 
+    public override HttpRequestMessage ToHttpRequestMessage() 
     {
         HttpRequestMessage httpRequestMessage = new HttpRequestMessage();
         UriBuilder uriBuilder = new UriBuilder(BaseUrl + MethodName);

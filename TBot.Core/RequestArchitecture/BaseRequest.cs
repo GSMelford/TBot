@@ -1,10 +1,9 @@
-﻿using TBot.Core.RequestArchitecture.Interfaces;
-using TBot.Core.RequestArchitecture.Structure;
+﻿using TBot.Core.RequestArchitecture.Structure;
 using TBot.Core.Utilities;
 
 namespace TBot.Core.RequestArchitecture;
 
-public abstract class BaseRequest : IRequestSenderService
+public abstract class BaseRequest
 {
     protected string BaseUrl { get; }
     protected abstract string MethodName { get; }
@@ -18,13 +17,8 @@ public abstract class BaseRequest : IRequestSenderService
         Headers = headers;
         SerializeParameter = parameter;
     }
-    
-    public async Task<HttpResponseMessage> SendAsync(HttpClient httpClient)
-    {
-        return await httpClient.SendAsync(ToHttpRequestMessage());
-    }
-    
-    protected virtual HttpRequestMessage ToHttpRequestMessage()
+
+    public virtual HttpRequestMessage ToHttpRequestMessage()
     {
         HttpRequestMessage httpRequestMessage = new HttpRequestMessage();
         UriBuilder uriBuilder = new UriBuilder(BaseUrl + MethodName);

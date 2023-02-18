@@ -1,4 +1,4 @@
-﻿namespace TBot.Client.Api.Telegram.SendVideo;
+﻿namespace TBot.Client.Api.SendVideo;
 
 public class VideoFile
 {

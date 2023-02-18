@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using TBot.Core.Attributes;
 using TBot.Core.Exceptions;
 using TBot.Core.RequestArchitecture.Structure;
 

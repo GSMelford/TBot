@@ -1,14 +1,13 @@
-using TBot.Core;
 using TBot.Core.RequestArchitecture;
 
-namespace TBot.Client.Api.Telegram.SendMessage;
+namespace TBot.Client.Api.SendMessage;
 
-public class SendMessageBaseRequest : BaseRequest
+public class SendMessageRequest : BaseRequest
 {
     protected override string MethodName => "sendMessage";
     protected override HttpMethod Method => HttpMethod.Post;
 
-    public SendMessageBaseRequest(string baseUrl, BaseParameters parameter) 
+    public SendMessageRequest(string baseUrl, BaseParameters parameter) 
         : base(baseUrl, null, parameter)
     {
     }
