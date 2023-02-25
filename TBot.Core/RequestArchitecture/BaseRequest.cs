@@ -5,20 +5,20 @@ namespace TBot.Core.RequestArchitecture;
 
 public abstract class BaseRequest
 {
-    protected string BaseUrl { get; }
+    private string BaseUrl { get; }
+    private List<Header>? Headers { get; }
+    private List<Parameter>? Parameters { get; }
     protected abstract string Endpoint { get; }
     protected abstract HttpMethod Method { get; }
-    protected List<Header>? Headers { get; }
-    protected BaseParameters? SerializeParameters { get; }
-
+    
     protected BaseRequest(string baseUrl, List<Header>? headers = null, BaseParameters? parameters = null)
     {
         BaseUrl = baseUrl;
         Headers = headers;
-        SerializeParameters = parameters;
+        Parameters = parameters?.ToParameters()?.ToList();
     }
 
-    public virtual HttpRequestMessage ToHttpRequestMessage()
+    public virtual HttpRequestMessage Build()
     {
         HttpRequestMessage httpRequestMessage = new HttpRequestMessage();
         UriBuilder uriBuilder = new UriBuilder(BaseUrl + Endpoint);
@@ -26,13 +26,12 @@ public abstract class BaseRequest
         if (Headers?.Count > 0) {
             foreach (Header parameter in Headers.OrEmptyIfNull())
             {
-                httpRequestMessage.Headers.TryAddWithoutValidation(parameter.Key, parameter.Value?.ToString());
+                httpRequestMessage.Headers.TryAddWithoutValidation(parameter.Key, parameter.Value);
             }
         }
         
-        IEnumerable<Parameter>? parameters = SerializeParameters?.ToList();
-        if (parameters is not null) {
-            uriBuilder.Query = string.Join("&", parameters.Select(x => $"{x.Key}={x.Value}"));
+        if (Parameters is not null) {
+            uriBuilder.Query = string.Join("&", Parameters.Select(x => $"{x.Key}={x.Value}"));
         }
 
         httpRequestMessage.RequestUri = new Uri(uriBuilder.Uri.AbsoluteUri);

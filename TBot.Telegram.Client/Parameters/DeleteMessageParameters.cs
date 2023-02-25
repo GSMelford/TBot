@@ -2,7 +2,7 @@
 using TBot.Core.RequestArchitecture.Structure;
 using TBot.Telegram.Dto.Types;
 
-namespace TBot.Telegram.Dto.Methods;
+namespace TBot.Client.Parameters;
 
 public class DeleteMessageParameters : BaseParameters
 {

@@ -6,7 +6,7 @@ namespace TBot.Core.RequestArchitecture;
 
 public class BaseParameters
 {
-    public IEnumerable<Parameter>? ToList()
+    public IEnumerable<Parameter>? ToParameters()
     {
         Type baseParameters = GetType();
         
