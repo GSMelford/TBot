@@ -29,8 +29,13 @@ public static class SerializationExtensions
         return JsonConvert.DeserializeObject<T>(value)!;
     }
     
-    public static T? ToObject<T>(this string value)
+    public static T? ToObject<T>(this string? value)
     {
-        return JsonConvert.DeserializeObject<T>(value);
+        return string.IsNullOrEmpty(value) ? default : JsonConvert.DeserializeObject<T>(value);
+    }
+    
+    public static string ToJson<T>(this T? value)
+    {
+        return JsonConvert.SerializeObject(value);
     }
 }
