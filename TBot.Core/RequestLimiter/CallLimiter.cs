@@ -48,15 +48,18 @@ public class CallLimiter
                 TimeSpan waitInterval = limiterContext.GetWaitInterval();
                 _logger?.LogInformation("Sending request blocked for {WaitInterval} due to the limit. " +
                                         "Request Key: {Key}", waitInterval, key);
-
+                Console.WriteLine($"Sending request blocked for {waitInterval} due to the limit. Request Key: {key}");
+                
                 Wait(CallLockers[key].RequestLock, waitInterval);
                 limiterContext.ClearCalls();
 
                 _logger?.LogInformation("Sending request unblocked. Request Key: {Key}", key);
+                Console.WriteLine($"Sending request unblocked. Request Key: {key}");
             }
             catch (Exception exception)
             {
                 _logger?.LogError(exception, "Error processing limits. Request Key: {Key}", key);
+                Console.WriteLine($"Error processing limits. Request Key: {key}");
             }
             finally
             {
@@ -90,6 +93,7 @@ public class CallLimiter
 
             await _limiterStore.SetAsync(key, limiterContext);
             _logger?.LogInformation("Limit synchronization context successfully created. Request Key: {Key}", key);
+            Console.WriteLine($"Limit synchronization context successfully created. Request Key: {key}");
         }
 
         return limiterContext;
