@@ -8,7 +8,7 @@ namespace TBot.Client.Interfaces;
 
 public interface ITBot
 {
-    Task<HttpResponseMessage> PostAsync(BaseRequest request);
+    Task<HttpResponseMessage> PostAsync(Request request);
     Task<ResponseDto<MessageDto>> SendMessageAsync(SendMessageParameters sendMessageParameters);
     Task<HttpResponseMessage> DeleteMessageAsync(DeleteMessageParameters deleteMessageParameters);
     Task<HttpResponseMessage> GetUpdatesAsync(GetUpdatesParameters getUpdatesParameters);

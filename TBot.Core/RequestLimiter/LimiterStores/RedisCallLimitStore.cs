@@ -4,11 +4,11 @@ using TBot.Core.Utilities;
 
 namespace TBot.Core.RequestLimiter.LimiterStores;
 
-public class RedisLimiterStore : ILimiterStore
+public class RedisCallLimitStore : ICallLimitStore
 {
     private readonly IDatabase _redisDatabase;
 
-    public RedisLimiterStore(string configurationString)
+    public RedisCallLimitStore(string configurationString)
     {
         IConnectionMultiplexer connection = ConnectionMultiplexer.Connect(configurationString);
         _redisDatabase = connection.GetDatabase();
@@ -24,15 +24,15 @@ public class RedisLimiterStore : ILimiterStore
         return _redisDatabase.LockReleaseAsync($"{key}:Lock", key);
     }
     
-    public async Task<LimiterContext?> GetAsync(string key)
+    public async Task<CallLimitContext?> GetAsync(string key)
     {
         string value = (await _redisDatabase.StringGetAsync(key)).ToString();
-        return string.IsNullOrEmpty(value) ? default : value.ToObject<LimiterContext>();
+        return string.IsNullOrEmpty(value) ? default : value.ToObject<CallLimitContext>();
     }
     
-    public Task SetAsync(string key, LimiterContext limiterContext, TimeSpan? timeToLive = null) 
+    public Task SetAsync(string key, CallLimitContext callLimitContext, TimeSpan? timeToLive = null) 
     {
-        return _redisDatabase.StringSetAsync(key, limiterContext.ToJson(), timeToLive);
+        return _redisDatabase.StringSetAsync(key, callLimitContext.ToJson(), timeToLive);
     }
     
     public Task<bool> ContainsAsync(string key) 

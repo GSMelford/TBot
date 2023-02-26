@@ -3,13 +3,22 @@ using TBot.Core.Utilities;
 
 namespace TBot.Core.RequestArchitecture;
 
-public abstract class BaseRequest
+public class BaseRequest
 {
     private string BaseUrl { get; }
     private List<Header>? Headers { get; }
     private List<Parameter>? Parameters { get; }
-    protected abstract string Endpoint { get; }
-    protected abstract HttpMethod Method { get; }
+    protected virtual string Endpoint { get; } = null!;
+    protected virtual HttpMethod Method { get; } = null!;
+
+    public BaseRequest(string baseUrl, Request request)
+    {
+        BaseUrl = baseUrl;
+        Endpoint = request.Endpoint;
+        Method = request.Method;
+        Parameters = request.Parameters;
+        Headers = request.Headers;
+    }
     
     protected BaseRequest(string baseUrl, List<Header>? headers = null, BaseParameters? parameters = null)
     {

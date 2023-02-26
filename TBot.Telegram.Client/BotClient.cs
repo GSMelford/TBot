@@ -24,9 +24,9 @@ public class BotClient : ITBot
         _tBotRequestService = tBotRequestService;
     }
 
-    public Task<HttpResponseMessage> PostAsync(BaseRequest request)
+    public Task<HttpResponseMessage> PostAsync(Request request)
     {
-        return _tBotRequestService.SendAsync(request.Build());
+        return _tBotRequestService.SendAsync(new BaseRequest(BaseUrl, request).Build());
     }
 
     public async Task<ResponseDto<MessageDto>> SendMessageAsync(SendMessageParameters sendMessageParameters)

@@ -4,7 +4,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>0.4.3</Version>
+        <Version>0.4.4</Version>
         <Authors>gsMelford, Squik, Zvesdochyot</Authors>
         <Company>TBotProject</Company>
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -26,10 +26,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\TBot.Telegram.Dto\TBot.Telegram.Dto.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Domain" />
     </ItemGroup>
 
 </Project>

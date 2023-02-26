@@ -1,23 +1,23 @@
 namespace TBot.Core.RequestLimiter;
 
-public class LimiterContext
+public class CallLimitContext
 {
-    public int CallCounter { get; set; }
+    private const long BUFFER_SECOND_TIME = 1;
+    public uint Counter { get; set; }
     public int MaxCalls { get; init; }
     public TimeSpan Interval { get; init; }
-    private const long BUFFER_SECOND_TIME = 1;
     public List<Call> Calls { get; set; } = new ();
 
-    public void AddCall()
+    public void SaveCall()
     {
         Calls.Add(new Call
         {
-            Number = CallCounter++,
+            Id = Counter++,
             Time = GetUtcNowUnixTimeSeconds()
         });
     }
 
-    public void ClearCalls()
+    public void Clear()
     {
         Calls.Clear();
     }
@@ -56,6 +56,6 @@ public class LimiterContext
 
 public class Call
 {
-    public int Number { get; set; }
+    public uint Id { get; set; }
     public long Time { get; set; }
 }
