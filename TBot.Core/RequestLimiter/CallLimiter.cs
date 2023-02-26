@@ -1,7 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using Microsoft.Extensions.Logging;
 using TBot.Core.RequestLimiter.Interfaces;
-using TBot.Core.RequestLimiter.LimiterStores;
 
 namespace TBot.Core.RequestLimiter;
 

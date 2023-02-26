@@ -2,7 +2,7 @@ namespace TBot.Core.RequestLimiter;
 
 public class LimiterContext
 {
-    private int _callCounter;
+    public int CallCounter { get; set; }
     public int MaxCalls { get; init; }
     public TimeSpan Interval { get; init; }
     private const long BUFFER_SECOND_TIME = 1;
@@ -12,7 +12,7 @@ public class LimiterContext
     {
         Calls.Add(new Call
         {
-            Number = _callCounter++,
+            Number = CallCounter++,
             Time = GetUtcNowUnixTimeSeconds()
         });
     }
@@ -39,7 +39,7 @@ public class LimiterContext
         
         TimeSpan firstCallInterval = TimeSpan.FromSeconds(utcNow - firstCallTime.Value);
         TimeSpan waitInterval = Interval.Add(TimeSpan.FromSeconds(BUFFER_SECOND_TIME)) - firstCallInterval;
-        return waitInterval.TotalSeconds < 0 ? waitInterval : TimeSpan.Zero;
+        return waitInterval.TotalSeconds < 0 ? TimeSpan.Zero : waitInterval;
     }
 
     private List<Call> GetFreshCalls(long utcNow)
