@@ -4,7 +4,7 @@ namespace TBot.Telegram.Dto.Types;
 
 public class MessageDto
 {
-    [JsonProperty("url", Required = Required.Always)]
+    [JsonProperty("message_id", Required = Required.Always)]
     public int MessageId { get; set; }
     
     [JsonProperty("message_thread_id")]

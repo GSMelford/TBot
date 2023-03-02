@@ -5,10 +5,10 @@ namespace TBot.Telegram.Dto.Types;
 public class UserDto
 {
     [JsonProperty("id", Required = Required.Always)]
-    public int Id { get; set; }
+    public long Id { get; set; }
     
     [JsonProperty("is_bot")]
-    public int IsBot { get; set; }
+    public bool IsBot { get; set; }
 
     [JsonProperty("first_name", Required = Required.Always)] 
     public string FirstName { get; set; } = null!;
