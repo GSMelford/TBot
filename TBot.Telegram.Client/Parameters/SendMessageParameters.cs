@@ -1,3 +1,4 @@
+using TBot.Client.Parameters.ReplyMarkupParameters;
 using TBot.Core.RequestArchitecture;
 using TBot.Core.RequestArchitecture.Structure;
 using TBot.Telegram.Dto.Types;
@@ -37,7 +38,6 @@ public class SendMessageParameters : BaseParameters
     [Parameter("allow_sending_without_reply")]
     public bool AllowSendingWithoutReply { get; set; }
     
-    //TODO: Develop a ReplyMarkup type for text formatting. Watch here => https://core.telegram.org/bots/api#sendmessage
-    /*[JsonProperty("reply_markup")]
-    public string ReplyMarkup { get; set; }*/
+    [Parameter("reply_markup", IsJson = true)]
+    public ReplyMarkup? ReplyMarkup { get; set; }
 }

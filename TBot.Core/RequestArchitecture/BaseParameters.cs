@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using TBot.Core.Exceptions;
 using TBot.Core.RequestArchitecture.Structure;
+using TBot.Core.Utilities;
 
 namespace TBot.Core.RequestArchitecture;
 
@@ -15,16 +16,27 @@ public class BaseParameters
             object[] attributes = property.GetCustomAttributes(false);
             object? value = property.GetValue(this);
 
-            if (attributes.FirstOrDefault() is not ParameterAttribute attribute)
+            ParameterAttribute? parameterAttribute = null;
+            foreach (object attributeObject in attributes)
+            {
+                if (attributeObject is not ParameterAttribute attribute) {
+                    continue;
+                }
+                
+                parameterAttribute = attribute;
+                break;
+            }
+
+            if (parameterAttribute is null)
             {
                 continue;
             }
-            
+
             if (!IsDefaultValue(value))
             {
-                yield return new Parameter(attribute.Name, value, attribute.IsEncode);
+                yield return new Parameter(parameterAttribute.Name, parameterAttribute.IsJson ? value.ToJson() : value, parameterAttribute.IsEncode);
             }
-            else if(attribute.Required)
+            else if(parameterAttribute.Required)
             {
                 throw new DiscrepancyException($"Required property not set on property: {property.Name}");
             }
