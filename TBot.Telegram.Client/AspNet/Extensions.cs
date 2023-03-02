@@ -1,8 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace TBot.Client.Extensions;
+namespace TBot.Client.AspNet;
 
-public static class AspNetExtensions
+public static class Extensions
 {
     public static IServiceCollection AddTelegramTBot(
         this IServiceCollection serviceCollection,  
