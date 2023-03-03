@@ -68,7 +68,7 @@ public class MessageDto
     public string? Text { get; set; }
     
     [JsonProperty("entities")]
-    public MessageEntityDto[]? Entities { get; set; }
+    public List<MessageEntityDto>? Entities { get; set; }
     
     [JsonProperty("animation")]
     public AnimationDto? Animation { get; set; }
