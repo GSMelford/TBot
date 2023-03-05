@@ -4,7 +4,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>0.4.3.4</Version>
+        <Version>0.4.3.5</Version>
         <Authors>gsMelford, Squik, Zvesdochyot</Authors>
         <Company>TBotProject</Company>
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -17,12 +17,4 @@
         <IsPackable>true</IsPackable>
         <OutputPath>../nupkgs</OutputPath>
     </PropertyGroup>
-
-    <ItemGroup>
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\TBot.Core\TBot.Core.csproj" />
-    </ItemGroup>
 </Project>

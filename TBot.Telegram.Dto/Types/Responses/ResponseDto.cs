@@ -1,21 +1,21 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace TBot.Telegram.Dto.Types.Responses;
 
 public class ResponseDto<TResult>
 {
-    [JsonProperty("ok")]
+    [JsonPropertyName("ok")]
     public bool StatusOk { get; set; }
     
-    [JsonProperty("result")]
+    [JsonPropertyName("result")]
     public TResult? Result { get; set; }
     
-    [JsonProperty("description")]
+    [JsonPropertyName("description")]
     public string? Description { get; set; }
     
-    [JsonProperty("error_code")]
+    [JsonPropertyName("error_code")]
     public int? ErrorCode { get; set; }
     
-    [JsonProperty("parameters")]
+    [JsonPropertyName("parameters")]
     public ResponseParameters? ResponseParameters { get; set; }
 }

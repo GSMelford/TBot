@@ -1,90 +1,90 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace TBot.Telegram.Dto.Types;
 
 public class ChatDto
 {
-    [JsonProperty("id", Required = Required.Always)]
+    [JsonPropertyName("id")]
     public int Id { get; set; }
 
-    [JsonProperty("type", Required = Required.Always)] 
+    [JsonPropertyName("type")] 
     public string Type { get; set; } = null!;
     
-    [JsonProperty("title")]
+    [JsonPropertyName("title")]
     public string? Title { get; set; }
     
-    [JsonProperty("username")]
+    [JsonPropertyName("username")]
     public string? Username { get; set; }
     
-    [JsonProperty("first_name")]
+    [JsonPropertyName("first_name")]
     public string? FirstName { get; set; }
     
-    [JsonProperty("last_name")]
+    [JsonPropertyName("last_name")]
     public string? LastName { get; set; }
     
-    [JsonProperty("is_forum")]
+    [JsonPropertyName("is_forum")]
     public string? IsForum { get; set; }
     
-    [JsonProperty("photo")]
+    [JsonPropertyName("photo")]
     public ChatPhotoDto? Photo { get; set; }
     
-    [JsonProperty("active_usernames")]
+    [JsonPropertyName("active_usernames")]
     public string[]? ActiveUsernames { get; set; }
     
-    [JsonProperty("emoji_status_custom_emoji_id")]
+    [JsonPropertyName("emoji_status_custom_emoji_id")]
     public string? EmojiStatusCustomEmojiId { get; set; }
     
-    [JsonProperty("bio")]
+    [JsonPropertyName("bio")]
     public string? Bio { get; set; }
     
-    [JsonProperty("has_private_forwards")]
+    [JsonPropertyName("has_private_forwards")]
     public bool? HasPrivateForwards { get; set; }
     
-    [JsonProperty("has_restricted_voice_and_video_messages")]
+    [JsonPropertyName("has_restricted_voice_and_video_messages")]
     public bool? HasRestrictedVoiceAndVideoMessages { get; set; }
     
-    [JsonProperty("join_to_send_messages")]
+    [JsonPropertyName("join_to_send_messages")]
     public bool? JoinToSendMessages { get; set; }
     
-    [JsonProperty("join_by_request")]
+    [JsonPropertyName("join_by_request")]
     public bool? JoinByRequest { get; set; }
     
-    [JsonProperty("description")]
+    [JsonPropertyName("description")]
     public string? Description { get; set; }
     
-    [JsonProperty("invite_link")]
+    [JsonPropertyName("invite_link")]
     public string? InviteLink { get; set; }
     
-    [JsonProperty("pinned_message")]
+    [JsonPropertyName("pinned_message")]
     public MessageDto? PinnedMessage { get; set; }
     
-    [JsonProperty("permissions")]
+    [JsonPropertyName("permissions")]
     public ChatPermissionsDto? Permissions { get; set; }
     
-    [JsonProperty("slow_mode_delay")]
+    [JsonPropertyName("slow_mode_delay")]
     public int? SlowModeDelay { get; set; }
     
-    [JsonProperty("message_auto_delete_time")]
+    [JsonPropertyName("message_auto_delete_time")]
     public int? MessageAutoDeleteTime { get; set; }
     
-    [JsonProperty("has_aggressive_anti_spam_enabled")]
+    [JsonPropertyName("has_aggressive_anti_spam_enabled")]
     public bool? HasAggressiveAntiSpamEnabled { get; set; }
     
-    [JsonProperty("has_hidden_members")]
+    [JsonPropertyName("has_hidden_members")]
     public bool? HasHiddenMembers { get; set; }
     
-    [JsonProperty("has_protected_content")]
+    [JsonPropertyName("has_protected_content")]
     public bool? HasProtectedContent { get; set; }
     
-    [JsonProperty("sticker_set_name")]
+    [JsonPropertyName("sticker_set_name")]
     public string? StickerSetName { get; set; }
     
-    [JsonProperty("can_set_sticker_set")]
+    [JsonPropertyName("can_set_sticker_set")]
     public bool? CanSetStickerSet { get; set; }
     
-    [JsonProperty("linked_chat_id")]
+    [JsonPropertyName("linked_chat_id")]
     public int? LinkedChatId { get; set; }
     
-    [JsonProperty("location")]
+    [JsonPropertyName("location")]
     public ChatLocationDto? Location { get; set; }
 }

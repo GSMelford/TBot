@@ -1,33 +1,33 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace TBot.Telegram.Dto.Updates;
 
 public class WebhookInfoDto
 {
-    [JsonProperty("url", Required = Required.Always)]
+    [JsonPropertyName("url")]
     public string Url { get; set; } = null!;
     
-    [JsonProperty("has_custom_certificate", Required = Required.Always)]
+    [JsonPropertyName("has_custom_certificate")]
     public bool HasCustomCertificate { get; set; }
     
-    [JsonProperty("pending_update_count", Required = Required.Always)]
+    [JsonPropertyName("pending_update_count")]
     public int PendingUpdateCount { get; set; }
     
-    [JsonProperty("ip_address")]
+    [JsonPropertyName("ip_address")]
     public string? IpAddress { get; set; }
     
-    [JsonProperty("last_error_date")]
+    [JsonPropertyName("last_error_date")]
     public int LastErrorDate { get; set; }
     
-    [JsonProperty("last_error_message")]
+    [JsonPropertyName("last_error_message")]
     public string? LastErrorMessage { get; set; }
     
-    [JsonProperty("last_synchronization_error_date")]
+    [JsonPropertyName("last_synchronization_error_date")]
     public int LastSynchronizationErrorDate { get; set; }
     
-    [JsonProperty("max_connections")]
+    [JsonPropertyName("max_connections")]
     public int MaxConnections { get; set; }
     
-    [JsonProperty("allowed_updates")]
+    [JsonPropertyName("allowed_updates")]
     public string[]? AllowedUpdates { get; set; }
 }

@@ -1,39 +1,39 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace TBot.Telegram.Dto.Types;
 
 public class UserDto
 {
-    [JsonProperty("id", Required = Required.Always)]
+    [JsonPropertyName("id")]
     public long Id { get; set; }
     
-    [JsonProperty("is_bot")]
+    [JsonPropertyName("is_bot")]
     public bool IsBot { get; set; }
 
-    [JsonProperty("first_name", Required = Required.Always)] 
+    [JsonPropertyName("first_name")] 
     public string FirstName { get; set; } = null!;
     
-    [JsonProperty("last_name")]
+    [JsonPropertyName("last_name")]
     public string? LastName { get; set; }
     
-    [JsonProperty("username")]
+    [JsonPropertyName("username")]
     public string? Username { get; set; }
 
-    [JsonProperty("language_code")] 
+    [JsonPropertyName("language_code")] 
     public string? LanguageCode { get; set; }
     
-    [JsonProperty("is_premium")]
+    [JsonPropertyName("is_premium")]
     public bool IsPremium { get; set; }
     
-    [JsonProperty("added_to_attachment_menu")]
+    [JsonPropertyName("added_to_attachment_menu")]
     public bool AddedToAttachmentMenu { get; set; }
     
-    [JsonProperty("can_join_groups")]
+    [JsonPropertyName("can_join_groups")]
     public bool CanJoinGroups { get; set; }
     
-    [JsonProperty("can_read_all_group_messages")]
+    [JsonPropertyName("can_read_all_group_messages")]
     public bool CanReadAllGroupMessages { get; set; }
     
-    [JsonProperty("supports_inline_queries")]
+    [JsonPropertyName("supports_inline_queries")]
     public bool SupportsInlineQueries { get; set; }
 }

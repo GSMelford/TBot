@@ -1,27 +1,27 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace TBot.Telegram.Dto.Types;
 
 public class MessageEntityDto
 {
-    [JsonProperty("type", Required = Required.Always)]
+    [JsonPropertyName("type")]
     public string Type { get; set; } = null!;
     
-    [JsonProperty("offset", Required = Required.Always)]
+    [JsonPropertyName("offset")]
     public int Offset { get; set; }
     
-    [JsonProperty("length", Required = Required.Always)]
+    [JsonPropertyName("length")]
     public int Length { get; set; }
     
-    [JsonProperty("url")]
+    [JsonPropertyName("url")]
     public string? Url { get; set; }
     
-    [JsonProperty("user")]
+    [JsonPropertyName("user")]
     public UserDto? User { get; set; }
     
-    [JsonProperty("language")]
+    [JsonPropertyName("language")]
     public string? Language { get; set; }
     
-    [JsonProperty("custom_emoji_id")]
+    [JsonPropertyName("custom_emoji_id")]
     public string? CustomEmojiId { get; set; }
 }
