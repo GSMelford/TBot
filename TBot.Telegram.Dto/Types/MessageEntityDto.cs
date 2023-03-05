@@ -5,7 +5,7 @@ namespace TBot.Telegram.Dto.Types;
 public class MessageEntityDto
 {
     [JsonProperty("type", Required = Required.Always)]
-    public MessageEntityType Type { get; set; } = null!;
+    public string Type { get; set; } = null!;
     
     [JsonProperty("offset", Required = Required.Always)]
     public int Offset { get; set; }
