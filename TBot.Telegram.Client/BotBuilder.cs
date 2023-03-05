@@ -36,7 +36,14 @@ public class BotBuilder
         return this;
     }
     
-    public BotBuilder AddLimiter(LimitStore limitStore, LimitConfig? limitConfig = null)
+    public BotBuilder AddRedisLimiter(string redisConnectionString, LimitConfig? limitConfig = null)
+    {
+        AddLimiter(limitConfig);
+        _serviceCollection.AddTransient<ICallLimitStore, RedisCallLimitStore>(_ => new RedisCallLimitStore(redisConnectionString));
+        return this;
+    }
+    
+    private BotBuilder AddLimiter(LimitConfig? limitConfig = null)
     {
         limitConfig ??= _defaultLimitConfig;
         limitConfig.Validate(20, TimeSpan.FromSeconds(60));
@@ -44,19 +51,6 @@ public class BotBuilder
         _serviceCollection.AddSingleton(limitConfig);
         _serviceCollection.AddSingleton<ICallLimitService, CallLimitService>();
 
-        switch (limitStore)
-        {
-            case LimitStore.Redis:
-                _serviceCollection.AddTransient<ICallLimitStore, RedisCallLimitStore>();
-                break;
-            case LimitStore.Memory:
-                break;
-            case LimitStore.File:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(limitStore), limitStore, null);
-        }
-        
         return this;
     }
 }

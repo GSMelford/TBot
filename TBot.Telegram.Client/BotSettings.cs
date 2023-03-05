@@ -9,7 +9,7 @@ public class BotSettings
         TelegramBotToken = token;
     }
     
-    public void Validate()
+    protected internal void Validate()
     {
         if (string.IsNullOrEmpty(TelegramBotToken))
         {
