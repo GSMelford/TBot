@@ -10,6 +10,14 @@ public class BaseRequest
     public List<Header>? Headers { get; set; }
     public List<Parameter>? Parameters { get; set; }
 
+    public BaseRequest(string endpoint, HttpMethod method, List<Parameter> parameters, List<Header>? headers = null)
+    {
+        Endpoint = endpoint;
+        Method = method;
+        Headers = headers;
+        Parameters = parameters;
+    }
+    
     public BaseRequest(string endpoint, HttpMethod method, BaseParameters baseParameters, List<Header>? headers = null)
     {
         Endpoint = endpoint;
