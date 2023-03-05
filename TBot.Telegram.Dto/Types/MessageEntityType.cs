@@ -2,39 +2,39 @@ namespace TBot.Telegram.Dto.Types;
 
 public class MessageEntityType
 {
-    private MessageEntityTypeEnum Type { get; set; }
+    public MessageEntityTypeValue Value { get; set; }
     
-    public MessageEntityType(MessageEntityTypeEnum type)
+    public MessageEntityType(MessageEntityTypeValue value)
     {
-        Type = type;
+        Value = value;
     }
     
     public static implicit operator MessageEntityType(string value)
     {
         return new MessageEntityType(value switch
         {
-            "mention" => MessageEntityTypeEnum.Mention,
-            "hashtag" => MessageEntityTypeEnum.Hashtag,
-            "cashtag" => MessageEntityTypeEnum.CashTag,
-            "bot_command" => MessageEntityTypeEnum.BotCommand,
-            "url" => MessageEntityTypeEnum.Url,
-            "email" => MessageEntityTypeEnum.Email,
-            "phone_number" => MessageEntityTypeEnum.PhoneNumber,
-            "bold" => MessageEntityTypeEnum.Bold,
-            "italic" => MessageEntityTypeEnum.Italic,
-            "underline" => MessageEntityTypeEnum.Underline,
-            "strikethrough" => MessageEntityTypeEnum.Strikethrough,
-            "spoiler" => MessageEntityTypeEnum.Spoiler,
-            "code" => MessageEntityTypeEnum.Code,
-            "pre" => MessageEntityTypeEnum.Pre,
-            "text_link" => MessageEntityTypeEnum.TextLink,
-            "text_mention" => MessageEntityTypeEnum.TextMention,
-            "custom_emoji" => MessageEntityTypeEnum.CustomEmoji,
+            "mention" => MessageEntityTypeValue.Mention,
+            "hashtag" => MessageEntityTypeValue.Hashtag,
+            "cashtag" => MessageEntityTypeValue.CashTag,
+            "bot_command" => MessageEntityTypeValue.BotCommand,
+            "url" => MessageEntityTypeValue.Url,
+            "email" => MessageEntityTypeValue.Email,
+            "phone_number" => MessageEntityTypeValue.PhoneNumber,
+            "bold" => MessageEntityTypeValue.Bold,
+            "italic" => MessageEntityTypeValue.Italic,
+            "underline" => MessageEntityTypeValue.Underline,
+            "strikethrough" => MessageEntityTypeValue.Strikethrough,
+            "spoiler" => MessageEntityTypeValue.Spoiler,
+            "code" => MessageEntityTypeValue.Code,
+            "pre" => MessageEntityTypeValue.Pre,
+            "text_link" => MessageEntityTypeValue.TextLink,
+            "text_mention" => MessageEntityTypeValue.TextMention,
+            "custom_emoji" => MessageEntityTypeValue.CustomEmoji,
             _ => throw new ArgumentOutOfRangeException(nameof(value), value, null)
         });
     }
     
-    public enum MessageEntityTypeEnum
+    public enum MessageEntityTypeValue
     {
         Mention,
         Hashtag,
