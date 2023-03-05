@@ -5,17 +5,19 @@ namespace TBot.Core.RequestArchitecture;
 
 public class BaseRequest
 {
-    public virtual string Endpoint { get; set; } = null!;
-    public virtual HttpMethod Method { get; set; } = null!;
+    public string Endpoint { get; set; } = null!;
+    public HttpMethod Method { get; set; } = null!;
     public List<Header>? Headers { get; set; }
     public List<Parameter>? Parameters { get; set; }
 
-    public BaseRequest(BaseParameters baseParameters, List<Header>? headers = null)
+    public BaseRequest(string endpoint, HttpMethod method, BaseParameters baseParameters, List<Header>? headers = null)
     {
+        Endpoint = endpoint;
+        Method = method;
         Headers = headers;
         Parameters = baseParameters.ToParameters()?.ToList();
     }
-    
+
     public HttpRequestMessage Build(string baseUrl)
     {
         HttpRequestMessage httpRequestMessage = new HttpRequestMessage();
