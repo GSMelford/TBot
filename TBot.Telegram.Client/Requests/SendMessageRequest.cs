@@ -5,8 +5,8 @@ namespace TBot.Client.Requests;
 
 public class SendMessageRequest : BaseRequest
 {
-    protected override string Endpoint => "/sendMessage";
-    protected override HttpMethod Method => HttpMethod.Post;
+    public override string Endpoint => "/sendMessage";
+    public override HttpMethod Method => HttpMethod.Post;
     
     public SendMessageRequest(SendMessageParameters sendMessageParameters) : base(sendMessageParameters)
     {

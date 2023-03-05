@@ -5,8 +5,8 @@ namespace TBot.Core.RequestArchitecture;
 
 public class BaseRequest
 {
-    protected virtual string Endpoint { get; set; } = null!;
-    protected virtual HttpMethod Method { get; set; } = null!;
+    public virtual string Endpoint { get; set; } = null!;
+    public virtual HttpMethod Method { get; set; } = null!;
     public List<Header>? Headers { get; set; }
     public List<Parameter>? Parameters { get; set; }
 

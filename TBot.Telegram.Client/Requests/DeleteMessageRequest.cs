@@ -5,8 +5,8 @@ namespace TBot.Client.Requests;
 
 public class DeleteMessageRequest : BaseRequest
 {
-    protected override string Endpoint => "/deleteMessage";
-    protected override HttpMethod Method => HttpMethod.Post;
+    public override string Endpoint => "/deleteMessage";
+    public override HttpMethod Method => HttpMethod.Post;
         
     public DeleteMessageRequest(DeleteMessageParameters deleteMessageParameters) : base(deleteMessageParameters)
     {
