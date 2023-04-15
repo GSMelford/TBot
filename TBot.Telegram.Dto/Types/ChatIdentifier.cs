@@ -2,7 +2,7 @@ namespace TBot.Telegram.Dto.Types;
 
 public class ChatIdentifier
 {
-    private readonly int? _identifier;
+    private readonly long? _identifier;
     private readonly string? _username;
 
     private ChatIdentifier(string username)
@@ -10,12 +10,12 @@ public class ChatIdentifier
         _username = username;
     }
         
-    private ChatIdentifier(int identifier)
+    private ChatIdentifier(long identifier)
     {
         _identifier = identifier;
     }
         
-    public static implicit operator ChatIdentifier(int identifier)
+    public static implicit operator ChatIdentifier(long identifier)
     {
         return new ChatIdentifier(identifier);
     }
