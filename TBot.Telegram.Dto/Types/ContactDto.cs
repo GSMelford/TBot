@@ -14,7 +14,7 @@ public class ContactDto
     public string LastName { get; set; } = null!;
     
     [JsonPropertyName("user_id")]
-    public int UserId { get; set; }
+    public long UserId { get; set; }
     
     [JsonPropertyName("vcard")]
     public string? Vcard { get; set; }
