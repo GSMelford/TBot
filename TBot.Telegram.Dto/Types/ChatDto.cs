@@ -5,7 +5,7 @@ namespace TBot.Telegram.Dto.Types;
 public class ChatDto
 {
     [JsonPropertyName("id")]
-    public int Id { get; set; }
+    public long Id { get; set; }
 
     [JsonPropertyName("type")] 
     public string Type { get; set; } = null!;
