@@ -25,13 +25,18 @@ public class BotBuilder
     public BotBuilder(IServiceCollection serviceCollection)
     {
         _serviceCollection = serviceCollection;
-        _serviceCollection.AddTransient<ITBot, BotClient>();
         _serviceCollection.AddHttpClient<ITBotRequestService, TBotRequestService>();
     }
 
-    public BotBuilder AddSettings(BotSettings botSettings)
+    public BotBuilder AddBot(BotSettings botSettings)
     {
         botSettings.Validate();
+        _serviceCollection.AddTransient<ITBot, BotClient>(provider =>
+        {
+            var requestService = provider.GetRequiredService<ITBotRequestService>();
+            var callLimitService = provider.GetService<ICallLimitService>();
+            return new BotClient(botSettings, requestService, callLimitService);
+        });
         _serviceCollection.AddSingleton(botSettings);
         return this;
     }

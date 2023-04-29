@@ -35,8 +35,6 @@ public class BotClient : ITBot
         }
         
         var response = await _tBotRequestService.SendAsync(request.Build(BaseUrl));
-        _callLimitService?.Complete();
-        
         return response;
     }
 }

@@ -10,7 +10,6 @@ public class CallLimitService : ICallLimitService
     private readonly ILogger<CallLimitService>? _logger;
     private ConcurrentDictionary<string, Locker> Lockers { get; } = new ();
     
-    private readonly SemaphoreSlim _semaphore;
     private readonly LimitConfig _limitConfig;
     
     private static string CallLimitContextKey (string key) => $"{key}:{nameof(CallLimitContext)}";
@@ -23,12 +22,10 @@ public class CallLimitService : ICallLimitService
         _logger = logger;
         _callLimitStore = callLimitStore;
         _limitConfig = limitConfig;
-        _semaphore = new SemaphoreSlim(_limitConfig.ThreadInitialCount, _limitConfig.ThreadMaxCount);
     }
 
     public async Task WaitAsync(string key)
     {
-        await _semaphore.WaitAsync((int)_limitConfig.ThreadTimeout.TotalMilliseconds); //TODO: Remove
         Lockers.TryAdd(key, new Locker());
         
         while (true)
@@ -68,11 +65,6 @@ public class CallLimitService : ICallLimitService
                 Wake(Lockers[key].LimiterStoreLock);
             }
         }
-    }
-
-    public void Complete()
-    {
-        _semaphore.Release();
     }
     
     private async Task<CallLimitContext> GetLimiterContextAsync(string key)
