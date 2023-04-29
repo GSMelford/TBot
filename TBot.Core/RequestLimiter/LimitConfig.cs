@@ -2,6 +2,7 @@ namespace TBot.Core.RequestLimiter;
 
 public class LimitConfig
 {
+    public string StoreName { get; set; } = "Default";
     public int ThreadInitialCount { get; set; }
     public int ThreadMaxCount { get; set; }
     public int MaxCalls { get; set; }

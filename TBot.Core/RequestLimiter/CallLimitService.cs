@@ -12,7 +12,7 @@ public class CallLimitService : ICallLimitService
     
     private readonly LimitConfig _limitConfig;
     
-    private static string CallLimitContextKey (string key) => $"{key}:{nameof(CallLimitContext)}";
+    private string CallLimitContextKey (string key) => $"{_limitConfig.StoreName}{key}:{nameof(CallLimitContext)}";
 
     public CallLimitService(
         ICallLimitStore callLimitStore,
