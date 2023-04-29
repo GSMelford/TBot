@@ -9,7 +9,7 @@ public class BotClient : ITBot
 {
     private const string API_URL = "https://api.telegram.org";
     private readonly ITBotRequestService _tBotRequestService;
-    private readonly IServiceProvider _serviceProvider;
+    private readonly ICallLimitService? _callLimitService;
     
     private readonly BotSettings _botToken;
     private string BaseUrl => $"{API_URL}/bot{_botToken.TelegramBotToken}";
@@ -17,29 +17,25 @@ public class BotClient : ITBot
     public BotClient(
         BotSettings botSettings,
         ITBotRequestService tBotRequestService, 
-        IServiceProvider serviceProvider)
+        ICallLimitService? callLimitService = null)
     {
         _botToken = botSettings;
         _tBotRequestService = tBotRequestService;
-        _serviceProvider = serviceProvider;
+        _callLimitService = callLimitService;
     }
 
     public async Task<HttpResponseMessage> PostAsync(BaseRequest request, string? key = null)
     {
-        object? service = _serviceProvider.GetService(typeof(ICallLimitService));
-        ICallLimitService? callLimitService = null;
-        
-        if (service is ICallLimitService limitService)
+        if (_callLimitService is not null)
         {
-            callLimitService = limitService;
             if (!string.IsNullOrEmpty(key))
             {
-                await callLimitService.WaitAsync(key);
+                await _callLimitService.WaitAsync(key);
             }
         }
         
-        HttpResponseMessage response = await _tBotRequestService.SendAsync(request.Build(BaseUrl));
-        callLimitService?.Complete();
+        var response = await _tBotRequestService.SendAsync(request.Build(BaseUrl));
+        _callLimitService?.Complete();
         
         return response;
     }
