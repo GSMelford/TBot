@@ -7,7 +7,7 @@ namespace TBot.Core.RequestLimiter;
 public class CallLimitService : ICallLimitService
 {
     private readonly ICallLimitStore _callLimitStore;
-    private readonly ILogger<CallLimitService>? _logger;
+    private readonly ILogger<ICallLimitService>? _logger;
     private ConcurrentDictionary<string, Locker> Lockers { get; } = new ();
     
     private readonly LimitConfig _limitConfig;
@@ -17,7 +17,7 @@ public class CallLimitService : ICallLimitService
     public CallLimitService(
         ICallLimitStore callLimitStore,
         LimitConfig limitConfig,
-        ILogger<CallLimitService>? logger = null)
+        ILogger<ICallLimitService>? logger = null)
     {
         _logger = logger;
         _callLimitStore = callLimitStore;
