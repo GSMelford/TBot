@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using TBot.Client.Interfaces;
 using TBot.Core.RequestArchitecture.Interfaces;
 using TBot.Core.RequestLimiter;
@@ -13,46 +12,27 @@ public static class Extensions
 {
     public static IServiceCollection AddTelegramTBot(
         this IServiceCollection serviceCollection,
-        Func<BotBuilder, BotBuilder> bot,
-        bool enableLimiter = false)
+        BotSettings? botSettings = null,
+        LimiterConfig? limiterConfig = null)
     {
-        serviceCollection
+        return serviceCollection
             .AddHttpClient<ITBotRequestService, TBotRequestService>().Services
-            .AddTransient<ITBot>(provider =>
+            .AddTransient<ITBot, BotClient>(provider =>
             {
                 var requestService = provider.GetRequiredService<ITBotRequestService>();
-                var callLimitService = provider.GetService<ICallLimitService>();
-
-                var botBuilder = bot(new BotBuilder());
-
-                return new BotClient(botBuilder.BotSettings, requestService, callLimitService);
+                var callLimiterService = provider.GetRequiredService<ICallLimiterService>();
+                var bot = new BotClient(requestService, callLimiterService);
+                bot.Init(botSettings, limiterConfig);
+                return bot;
             });
+    }
 
-        if (enableLimiter)
-        {
-            serviceCollection
-                .AddSingleton<ICallLimitService, CallLimitService>(provider =>
-                {
-                    var callLimiterStore = provider.GetRequiredService<ICallLimitStore>();
-                    var logger = provider.GetRequiredService<ILogger<ICallLimitService>>();
-                    var botBuilder = bot(new BotBuilder());
-                    return new CallLimitService(callLimiterStore, botBuilder.LimiterConfig, logger);
-                })
-                .AddTransient<ICallLimitStore>(_ =>
-                {
-                    var botBuilder = bot(new BotBuilder());
-
-                    return botBuilder.LimitStore switch
-                    {
-                        LimitStore.Redis => new RedisCallLimitStore(botBuilder.RedisConnectionString!),
-                        LimitStore.Memory => throw new ArgumentOutOfRangeException(),
-                        LimitStore.File => throw new ArgumentOutOfRangeException(),
-                        null => throw new ArgumentOutOfRangeException(),
-                        _ => throw new ArgumentOutOfRangeException()
-                    };
-                });
-        }
-
-        return serviceCollection;
+    public static IServiceCollection AddTBotRedisLimiter(
+        this IServiceCollection serviceCollection, 
+        string connectionString)
+    {
+        return serviceCollection
+            .AddSingleton<ICallLimiterService, CallLimiterService>()
+            .AddTransient<ICallLimitStore, RedisCallLimitStore>(_ => new RedisCallLimitStore(connectionString));
     }
 }

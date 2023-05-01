@@ -2,16 +2,16 @@ namespace TBot.Client;
 
 public class BotSettings
 {
-    public string TelegramBotToken { get; }
+    public string BotToken { get; }
 
     public BotSettings(string token)
     {
-        TelegramBotToken = token;
+        BotToken = token;
     }
     
     protected internal void Validate()
     {
-        if (string.IsNullOrEmpty(TelegramBotToken))
+        if (string.IsNullOrEmpty(BotToken))
         {
             //TODO: Add validation for token length
             throw new ArgumentException("Bot token cannot be empty");

@@ -4,35 +4,34 @@ using TBot.Core.RequestLimiter.Interfaces;
 
 namespace TBot.Core.RequestLimiter;
 
-public class CallLimitService : ICallLimitService
+public class CallLimiterService : ICallLimiterService
 {
     private readonly ICallLimitStore _callLimitStore;
-    private readonly ILogger<ICallLimitService>? _logger;
+    private readonly ILogger<ICallLimiterService>? _logger;
     private ConcurrentDictionary<string, Locker> Lockers { get; } = new ();
-    
-    private readonly LimitConfig _limitConfig;
-    
-    private string CallLimitContextKey (string key) => $"{_limitConfig.StoreName}{key}:{nameof(CallLimitContext)}";
 
-    public CallLimitService(
+    private LimiterConfig _limiterConfig = null!;
+    
+    private string CallLimitContextKey (string key) => $"{_limiterConfig.StoreName}{key}:{nameof(CallLimitContext)}";
+
+    public CallLimiterService(
         ICallLimitStore callLimitStore,
-        LimitConfig limitConfig,
-        ILogger<ICallLimitService>? logger = null)
+        ILogger<ICallLimiterService>? logger = null)
     {
         _logger = logger;
         _callLimitStore = callLimitStore;
-        _limitConfig = limitConfig;
     }
 
-    public async Task WaitAsync(string key)
+    public async Task WaitAsync(string key, LimiterConfig limiterConfig)
     {
+        _limiterConfig = limiterConfig;
         Lockers.TryAdd(key, new Locker());
         
         while (true)
         {
             if (!await _callLimitStore.LockTakeAsync(key))
             {
-                Wait(Lockers[key].LimiterStoreLock, _limitConfig.StoreTimeout);
+                Wait(Lockers[key].LimiterStoreLock, _limiterConfig.StoreTimeout);
                 continue;
             }
             
@@ -79,8 +78,8 @@ public class CallLimitService : ICallLimitService
         {
             callLimitContext = new CallLimitContext
             {
-                MaxCalls = _limitConfig.MaxCalls,
-                Interval = _limitConfig.CallsInterval
+                MaxCalls = _limiterConfig.MaxCalls,
+                Interval = _limiterConfig.CallsInterval
             };
 
             await _callLimitStore.SetAsync(key, callLimitContext);

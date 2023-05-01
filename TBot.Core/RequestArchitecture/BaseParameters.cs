@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using TBot.Core.Exceptions;
 using TBot.Core.RequestArchitecture.Structure;
 using TBot.Core.Utilities;
 
@@ -38,7 +37,7 @@ public class BaseParameters
             }
             else if(parameterAttribute.Required)
             {
-                throw new DiscrepancyException($"Required property not set on property: {property.Name}");
+                throw new Exception($"Required property not set on property: {property.Name}");
             }
         }
     }
