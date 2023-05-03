@@ -12,7 +12,7 @@ public class CallLimiterService : ICallLimiterService
 
     private LimiterConfig _limiterConfig = null!;
     
-    private string CallLimitContextKey (string key) => $"{_limiterConfig.StoreName}{key}:{nameof(CallLimitContext)}";
+    private static string GetCallLimitContextKey (string key) => $"{key}:{nameof(CallLimitContext)}";
 
     public CallLimiterService(
         ICallLimitStore callLimitStore,
@@ -35,7 +35,7 @@ public class CallLimiterService : ICallLimiterService
                 continue;
             }
             
-            var callLimiterSyncContext = await GetLimiterContextAsync(CallLimitContextKey(key));
+            var callLimiterSyncContext = await GetLimiterContextAsync(GetCallLimitContextKey(key));
             try
             {
                 if (callLimiterSyncContext.HasNext())
@@ -59,7 +59,7 @@ public class CallLimiterService : ICallLimiterService
             }
             finally
             {
-                await UpdateCallLimitContextAsync(CallLimitContextKey(key), callLimiterSyncContext);
+                await UpdateCallLimitContextAsync(GetCallLimitContextKey(key), callLimiterSyncContext);
                 await _callLimitStore.LockReleaseAsync(key);
                 Wake(Lockers[key].LimiterStoreLock);
             }
