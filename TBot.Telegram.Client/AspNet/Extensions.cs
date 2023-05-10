@@ -20,7 +20,7 @@ public static class Extensions
             .AddTransient<ITBot, BotClient>(provider =>
             {
                 var requestService = provider.GetRequiredService<ITBotRequestService>();
-                var callLimiterService = provider.GetRequiredService<ICallLimiterService>();
+                var callLimiterService = provider.GetService<ICallLimiterService>();
                 var bot = new BotClient(requestService, callLimiterService);
                 bot.Init(botSettings, limiterConfig);
                 return bot;
