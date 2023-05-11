@@ -2,7 +2,7 @@ namespace TBot.Client;
 
 public class TBotOptions
 {
-    public string BotToken { get; }
+    public string BotToken { get; set;  }
 
     public TBotOptions(string token)
     {
