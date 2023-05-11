@@ -28,19 +28,23 @@ public static class Extensions
             });
     }
 
-    public static IServiceCollection AddTelegramTBot(this IServiceCollection services, Action<TBotOptions>? setupAction)
+    public static IServiceCollection AddTelegramTBot(
+        this IServiceCollection services,
+        Action<TBotOptions>? setupAction = null)
     {
-        services.AddTransient<ITBot, BotClient>(sp =>
-        {
-            var requestService = sp.GetRequiredService<ITBotRequestService>();
-            var callLimiterService = sp.GetService<ICallLimiterService>();
-            
-            var bot = new BotClient(requestService, callLimiterService);
-            var botOptions = sp.GetRequiredService<IOptionsSnapshot<TBotOptions>>().Value;
-            var limiterOptions = sp.GetService<IOptionsSnapshot<TBotLimiterOptions>>()?.Value;
-            bot.Init(botOptions, limiterOptions);
-            return bot;
-        });
+        services
+            .AddHttpClient<ITBotRequestService, TBotRequestService>().Services
+            .AddTransient<ITBot, BotClient>(sp =>
+            {
+                var requestService = sp.GetRequiredService<ITBotRequestService>();
+                var callLimiterService = sp.GetService<ICallLimiterService>();
+
+                var bot = new BotClient(requestService, callLimiterService);
+                var botOptions = sp.GetRequiredService<IOptionsSnapshot<TBotOptions>>().Value;
+                var limiterOptions = sp.GetService<IOptionsSnapshot<TBotLimiterOptions>>()?.Value;
+                bot.Init(botOptions, limiterOptions);
+                return bot;
+            });
 
         if (setupAction != null)
             services.Configure(setupAction);
@@ -59,7 +63,7 @@ public static class Extensions
     
     public static IServiceCollection AddTBotRedisLimiter(
         this IServiceCollection services, 
-        Action<TBotLimiterOptions>? action)
+        Action<TBotLimiterOptions>? action = null)
     {
         services
             .AddSingleton<ICallLimiterService, CallLimiterService>()
