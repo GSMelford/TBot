@@ -28,7 +28,7 @@ public static class Extensions
             });
     }
 
-    public static IServiceCollection AddTelegramTBot(
+    public static IServiceCollection AddTelegramTBotConfigure(
         this IServiceCollection services,
         Action<TBotOptions>? setupAction = null)
     {
