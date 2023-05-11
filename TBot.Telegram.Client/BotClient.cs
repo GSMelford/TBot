@@ -12,8 +12,8 @@ public class BotClient : ITBot
     private readonly ITBotRequestService _tBotRequestService;
     private readonly ICallLimiterService? _callLimitService;
 
-    private BotSettings? _botSettings;
-    private LimiterConfig? _limitConfig;
+    private TBotOptions? _botSettings;
+    private TBotLimiterOptions? _limitConfig;
     
     private static string GetBaseUrl (string token) => $"{API_URL}/bot{token}";
 
@@ -25,11 +25,11 @@ public class BotClient : ITBot
         _callLimitService = callLimitService;
     }
 
-    public void Init(BotSettings? botSettings = null, LimiterConfig? limitConfig = null)
+    public void Init(TBotOptions? botSettings = null, TBotLimiterOptions? limitConfig = null)
     {
         _botSettings = botSettings;
         _limitConfig = limitConfig;
-        _limitConfig ??= new LimiterConfig
+        _limitConfig ??= new TBotLimiterOptions
         {
             StoreName = "Default",
             CallsInterval = TimeSpan.FromSeconds(60),

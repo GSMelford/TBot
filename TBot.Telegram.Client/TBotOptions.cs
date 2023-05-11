@@ -1,10 +1,10 @@
 namespace TBot.Client;
 
-public class BotSettings
+public class TBotOptions
 {
     public string BotToken { get; }
 
-    public BotSettings(string token)
+    public TBotOptions(string token)
     {
         BotToken = token;
     }

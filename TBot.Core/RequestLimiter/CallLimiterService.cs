@@ -10,7 +10,7 @@ public class CallLimiterService : ICallLimiterService
     private readonly ILogger<ICallLimiterService>? _logger;
     private ConcurrentDictionary<string, Locker> Lockers { get; } = new ();
 
-    private LimiterConfig _limiterConfig = null!;
+    private TBotLimiterOptions _botLimiterOptions = null!;
     
     private static string GetCallLimitContextKey (string key) => $"{key}:{nameof(CallLimitContext)}";
 
@@ -22,16 +22,16 @@ public class CallLimiterService : ICallLimiterService
         _callLimitStore = callLimitStore;
     }
 
-    public async Task WaitAsync(string key, LimiterConfig limiterConfig)
+    public async Task WaitAsync(string key, TBotLimiterOptions botLimiterOptions)
     {
-        _limiterConfig = limiterConfig;
+        _botLimiterOptions = botLimiterOptions;
         Lockers.TryAdd(key, new Locker());
         
         while (true)
         {
             if (!await _callLimitStore.LockTakeAsync(key))
             {
-                Wait(Lockers[key].LimiterStoreLock, _limiterConfig.StoreTimeout);
+                Wait(Lockers[key].LimiterStoreLock, _botLimiterOptions.StoreTimeout);
                 continue;
             }
             
@@ -78,8 +78,8 @@ public class CallLimiterService : ICallLimiterService
         {
             callLimitContext = new CallLimitContext
             {
-                MaxCalls = _limiterConfig.MaxCalls,
-                Interval = _limiterConfig.CallsInterval
+                MaxCalls = _botLimiterOptions.MaxCalls,
+                Interval = _botLimiterOptions.CallsInterval
             };
 
             await _callLimitStore.SetAsync(key, callLimitContext);
