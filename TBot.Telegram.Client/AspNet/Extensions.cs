@@ -36,12 +36,13 @@ public static class Extensions
             .AddHttpClient<ITBotRequestService, TBotRequestService>().Services
             .AddTransient<ITBot, BotClient>(sp =>
             {
-                var requestService = sp.GetRequiredService<ITBotRequestService>();
-                var callLimiterService = sp.GetService<ICallLimiterService>();
+                using var scope = sp.CreateScope();
+                var requestService = scope.ServiceProvider.GetRequiredService<ITBotRequestService>();
+                var callLimiterService = scope.ServiceProvider.GetService<ICallLimiterService>();
 
                 var bot = new BotClient(requestService, callLimiterService);
-                var botOptions = sp.GetRequiredService<IOptionsSnapshot<TBotOptions>>().Value;
-                var limiterOptions = sp.GetService<IOptionsSnapshot<TBotLimiterOptions>>()?.Value;
+                var botOptions = scope.ServiceProvider.GetRequiredService<IOptionsSnapshot<TBotOptions>>().Value;
+                var limiterOptions = scope.ServiceProvider.GetService<IOptionsSnapshot<TBotLimiterOptions>>()?.Value;
                 bot.Init(botOptions, limiterOptions);
                 return bot;
             });
@@ -69,8 +70,9 @@ public static class Extensions
             .AddSingleton<ICallLimiterService, CallLimiterService>()
             .AddTransient<ICallLimitStore, RedisCallLimitStore>(sp =>
             {
-                var limiterOptions = sp.GetRequiredService<IOptionsSnapshot<TBotLimiterOptions>>().Value;
-                return new RedisCallLimitStore(limiterOptions.StoreConnectionString!);
+                using var scope = sp.CreateScope();
+                var limiterOptions = scope.ServiceProvider.GetRequiredService<IOptionsSnapshot<TBotLimiterOptions>>().Value;
+                return new RedisCallLimitStore(limiterOptions.StoreConnectionString);
             });
         
         if (action != null)

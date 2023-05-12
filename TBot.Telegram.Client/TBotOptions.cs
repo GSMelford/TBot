@@ -4,6 +4,11 @@ public class TBotOptions
 {
     public string BotToken { get; set;  }
 
+    public TBotOptions()
+    {
+        
+    }
+    
     public TBotOptions(string token)
     {
         BotToken = token;

@@ -2,12 +2,17 @@ namespace TBot.Core.RequestLimiter;
 
 public class TBotLimiterOptions
 {
-    public string? StoreConnectionString { get; set; }
+    public TBotLimiterOptions()
+    {
+        
+    }
+    
+    public string StoreConnectionString { get; set; }
     public string StoreName { get; set; } = "Default";
-    public int ThreadInitialCount { get; set; }
-    public int ThreadMaxCount { get; set; }
-    public int MaxCalls { get; set; }
-    public TimeSpan CallsInterval { get; set; }
-    public TimeSpan ThreadTimeout { get; set; }
-    public TimeSpan StoreTimeout { get; set; }
+    public int ThreadInitialCount { get; set; } = 20;
+    public int ThreadMaxCount { get; set; } = 20;
+    public int MaxCalls { get; set; } = 20;
+    public TimeSpan CallsInterval { get; set; } = TimeSpan.FromSeconds(60);
+    public TimeSpan ThreadTimeout { get; set; } = TimeSpan.FromSeconds(30);
+    public TimeSpan StoreTimeout { get; set; } = TimeSpan.FromSeconds(2);
 }

@@ -29,16 +29,7 @@ public class BotClient : ITBot
     {
         _botSettings = botSettings;
         _limitConfig = limitConfig;
-        _limitConfig ??= new TBotLimiterOptions
-        {
-            StoreName = "Default",
-            CallsInterval = TimeSpan.FromSeconds(60),
-            MaxCalls = 20,
-            StoreTimeout = TimeSpan.FromSeconds(2),
-            ThreadTimeout = TimeSpan.FromSeconds(30),
-            ThreadInitialCount = 20,
-            ThreadMaxCount = 20
-        };
+        _limitConfig ??= new TBotLimiterOptions();
     }
 
     public Task<HttpResponseMessage> PostAsync(BaseRequest request)
