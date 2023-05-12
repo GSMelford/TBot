@@ -3,6 +3,7 @@ namespace TBot.Client;
 public class TBotOptions
 {
     public string BotToken { get; set;  }
+    public string UpdatePath { get; set;  }
 
     public TBotOptions()
     {
@@ -12,6 +13,12 @@ public class TBotOptions
     public TBotOptions(string token)
     {
         BotToken = token;
+    }
+    
+    public TBotOptions(string token, string updatePath)
+    {
+        BotToken = token;
+        UpdatePath = updatePath;
     }
     
     protected internal void Validate()
