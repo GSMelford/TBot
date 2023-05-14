@@ -31,6 +31,11 @@ public class BaseParameters
                 continue;
             }
 
+            if (value is Enum @enum)
+            {
+                value = Enum.GetName(@enum.GetType(), @enum);
+            }
+            
             if (!IsDefaultValue(value))
             {
                 yield return new Parameter(parameterAttribute.Name, parameterAttribute.IsJson ? value.ToJson() : value, parameterAttribute.IsEncode);

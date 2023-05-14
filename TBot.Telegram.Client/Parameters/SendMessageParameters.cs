@@ -16,9 +16,8 @@ public class SendMessageParameters : BaseParameters
     [Parameter("text", Required = true)]
     public string Text { get; set; } = null!;
     
-    //TODO: Develop a ParseMode type for text formatting. Watch here => https://core.telegram.org/bots/api#formatting-options
-    /*[JsonProperty("parse_mode", Required = Required.Always)]
-    public string parse_mode { get; set; }*/
+    [Parameter("parse_mode")]
+    public ParseMode? ParseMode { get; set; }
         
     [Parameter("entities")]
     public List<MessageEntityDto>? Entities { get; set; }
@@ -40,4 +39,11 @@ public class SendMessageParameters : BaseParameters
     
     [Parameter("reply_markup", IsJson = true)]
     public ReplyMarkup? ReplyMarkup { get; set; }
+}
+
+public enum ParseMode
+{
+    MarkdownV2,
+    Markdown,
+    HTML
 }
