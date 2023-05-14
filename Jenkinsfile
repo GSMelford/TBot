@@ -22,7 +22,7 @@ pipeline {
                     sh "cd /var/lib/jenkins/workspace/TBot/"
                     echo "=== building ==="
                     sh "sudo dotnet --version"
-                    sh "sudo dotnet build"
+                    sh "sudo dotnet build -c Release"
                 }
             }
         }
