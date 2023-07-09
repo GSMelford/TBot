@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace TBot.Telegram.Dto.Types.Responses;
+namespace TBot.Telegram.Dto.Responses;
 
 public class ResponseParameters
 {

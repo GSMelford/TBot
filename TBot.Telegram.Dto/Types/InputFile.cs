@@ -1,6 +1,6 @@
 namespace TBot.Telegram.Dto.Types;
 
-public class SuccessfulPaymentDto
+public class InputFile
 {
     
 }

@@ -1,3 +1,5 @@
+using System;
+
 namespace TBot.Telegram.Dto.Types;
 
 public class ChatIdentifier

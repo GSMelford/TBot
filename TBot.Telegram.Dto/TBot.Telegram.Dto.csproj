@@ -4,7 +4,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>0.4.3.11</Version>
+        <Version>0.5.0</Version>
         <Authors>gsMelford, Squik, Zvesdochyot</Authors>
         <Company>TBotProject</Company>
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -17,6 +17,10 @@
         <IsPackable>true</IsPackable>
         <OutputPath>../nupkgs</OutputPath>
     </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="obj\Debug\net7.0\" />
+    </ItemGroup>
 
     <Target Condition="$(Configuration) == 'Debug'" Name="NugetPackAutoVersioning" AfterTargets="Build">
         <Exec Command="dotnet pack -p:PackageVersion=$([System.DateTime]::Now.ToString(&quot;yyyy.MM.dd.HHmm&quot;)) --no-build --configuration $(Configuration) --output &quot;$(SolutionDir)nuget-local&quot;" />
