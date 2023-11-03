@@ -1,5 +1,4 @@
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
 using Newtonsoft.Json;
 
 namespace TBot.Client.Utilities;
@@ -10,13 +9,10 @@ public static class SerializationExtensions
     {
         return string.IsNullOrEmpty(value) ? default : JsonConvert.DeserializeObject<T>(value);
     }
-    
-    public static T? Deserialize<T>(this Stream stream)
+
+    internal static async Task<T?> DeserializeAsync<T>(this Stream stream)
     {
-        var serializer = new JsonSerializer();
-        using var streamReader = new StreamReader(stream);
-        using var jsonTextReader = new JsonTextReader(streamReader);
-        return serializer.Deserialize<T>(jsonTextReader);
+        return await System.Text.Json.JsonSerializer.DeserializeAsync<T>(stream, new JsonSerializerOptions());
     }
     
     public static string ToJson<T>(this T? value)

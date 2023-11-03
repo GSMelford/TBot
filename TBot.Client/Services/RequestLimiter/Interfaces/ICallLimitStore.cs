@@ -1,4 +1,4 @@
-namespace TBot.Client.RequestLimiter.Interfaces;
+namespace TBot.Client.Services.RequestLimiter.Interfaces;
 
 public interface ICallLimitStore
 {

@@ -1,4 +1,4 @@
-﻿namespace TBot.Client.RequestArchitecture.Interfaces;
+﻿namespace TBot.Client.Domain.HttpRequests;
 
 public interface ITBotRequestService
 {

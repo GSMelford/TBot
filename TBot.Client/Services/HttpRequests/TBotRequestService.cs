@@ -1,4 +1,4 @@
-using TBot.Client.RequestArchitecture.Interfaces;
+using TBot.Client.Domain.HttpRequests;
 
 namespace TBot.Client.Services.HttpRequests;
 

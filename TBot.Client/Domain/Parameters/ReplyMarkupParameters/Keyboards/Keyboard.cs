@@ -1,6 +1,6 @@
-using TBot.Client.Parameters.ReplyMarkupParameters.Buttons;
+using TBot.Client.Domain.Parameters.ReplyMarkupParameters.Buttons;
 
-namespace TBot.Client.Parameters.ReplyMarkupParameters.Keyboards;
+namespace TBot.Client.Domain.Parameters.ReplyMarkupParameters.Keyboards;
 
 public abstract class Keyboard<TButton> : ReplyMarkup where TButton : Button
 {

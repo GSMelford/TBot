@@ -1,4 +1,4 @@
-namespace TBot.Client.Parameters.ReplyMarkupParameters.Buttons.RequestButtonParameter;
+namespace TBot.Client.Domain.Parameters.ReplyMarkupParameters.Buttons.RequestButtonParameter;
 
 public class KeyboardButtonRequestChat
 {
