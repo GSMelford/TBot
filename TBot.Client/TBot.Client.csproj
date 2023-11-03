@@ -1,22 +1,37 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>0.5.0</Version>
+        <Version>0.4.5.21</Version>
         <Authors>gsMelford, Squik, Zvesdochyot</Authors>
         <Company>TBotProject</Company>
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-        <PackageId>TBot.Telegram.Dto</PackageId>
-        <Title>TBot.Telegram.Dto</Title>
+        <PackageId>TBot.Client</PackageId>
+        <Title>TBot.Client</Title>
         <RepositoryUrl>https://github.com/GSMelford/TBot</RepositoryUrl>
-        <RootNamespace>TBot.Telegram.Dto</RootNamespace>
+        <RootNamespace>TBot.Client</RootNamespace>
         <Product>TBot</Product>
         <LangVersion>11</LangVersion>
         <IsPackable>true</IsPackable>
         <OutputPath>../nupkgs</OutputPath>
     </PropertyGroup>
+    
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+      <PackageReference Include="StackExchange.Redis" Version="2.7.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TBot.Telegram.Dto\TBot.Telegram.Dto.csproj" />
+    </ItemGroup>
 
     <Target Condition="$(Configuration) == 'Debug'" Name="NugetPackAutoVersioning" AfterTargets="Build">
         <Exec Command="dotnet pack -p:PackageVersion=$([System.DateTime]::Now.ToString(&quot;yyyy.MM.dd.HHmm&quot;)) --no-build --configuration $(Configuration) --output &quot;$(SolutionDir)nuget-local&quot;" />
