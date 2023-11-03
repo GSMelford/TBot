@@ -17,8 +17,8 @@ public class Result<TResponseDto> where TResponseDto : new()
     public static async Task<Result<TResponseDto>> CreateAsync(HttpResponseMessage httpResponseMessage)
     {
         var responseStream = await httpResponseMessage.Content.ReadAsStreamAsync();
-        var value = responseStream.Deserialize<ResponseDto<TResponseDto>>();
-        
+        var value = await responseStream.DeserializeAsync<ResponseDto<TResponseDto>>();
+
         return value is not null 
             ? new Result<TResponseDto>(value, httpResponseMessage)
             : new Result<TResponseDto>(new ResponseDto<TResponseDto>(), httpResponseMessage);

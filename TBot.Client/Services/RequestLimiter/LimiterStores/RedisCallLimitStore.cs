@@ -1,8 +1,8 @@
 using StackExchange.Redis;
-using TBot.Client.RequestLimiter.Interfaces;
+using TBot.Client.Services.RequestLimiter.Interfaces;
 using TBot.Client.Utilities;
 
-namespace TBot.Client.RequestLimiter.LimiterStores;
+namespace TBot.Client.Services.RequestLimiter.LimiterStores;
 
 public class RedisCallLimitStore : ICallLimitStore
 {

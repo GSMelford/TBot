@@ -9,13 +9,17 @@ public class TelegramRequest
     private static string GetBaseUrl (string token) => $"{ApiUrl}/bot{token}";
     private readonly RequestDescriptor _requestDescriptor;
 
-    public string ChatId { get; private set; }
+    public string ChatId { get; private set; } = null!;
 
     private TelegramRequest(string token, RequestDescriptor requestDescriptor)
     {
         _token = token;
         _requestDescriptor = requestDescriptor;
-        ChatId = requestDescriptor.QueryParameters.First(x=>x.Key == ChatIdParameterName).Value!.ToString()!;
+        
+        var chatId = requestDescriptor.QueryParameters.FirstOrDefault(x => x.Key == ChatIdParameterName);
+        if (chatId is null) {
+            ChatId = string.Empty;
+        }
     }
 
     public static TelegramRequest Create(string token, RequestDescriptor requestDescriptor)

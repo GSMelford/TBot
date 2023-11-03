@@ -1,8 +1,8 @@
 ﻿using System.Collections.Concurrent;
 using Microsoft.Extensions.Logging;
-using TBot.Client.RequestLimiter.Interfaces;
+using TBot.Client.Services.RequestLimiter.Interfaces;
 
-namespace TBot.Client.RequestLimiter;
+namespace TBot.Client.Services.RequestLimiter;
 
 public class CallLimiterService : ICallLimiterService
 {

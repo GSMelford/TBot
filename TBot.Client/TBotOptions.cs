@@ -1,25 +1,11 @@
 namespace TBot.Client;
 
-public class TBotOptions
+public class BotOptions
 {
-    public string BotToken { get; set; }
-    public string UpdatePath { get; set; }
-
-    public TBotOptions()
-    {
-        
-    }
+    public string BotToken { get; set; } = null!;
+    public string UpdatePath { get; set; } = null!;
+    public UpdateOptions? UpdateOptions { get; set; }
     
-    public TBotOptions(string token)
-    {
-        BotToken = token;
-    }
-    
-    public TBotOptions(string token, string updatePath)
-    {
-        BotToken = token;
-        UpdatePath = updatePath;
-    }
     
     protected internal void Validate()
     {
@@ -29,4 +15,10 @@ public class TBotOptions
             throw new ArgumentException("Bot token cannot be empty");
         }
     }
+}
+
+public class UpdateOptions
+{
+    public int Limit { get; set; }
+    public int TimeoutSeconds { get; set; }
 }

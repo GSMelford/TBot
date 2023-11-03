@@ -1,7 +1,7 @@
 using TBot.Client.RequestArchitecture;
 using TBot.Client.RequestArchitecture.Structure;
 
-namespace TBot.Client.Parameters.Webhook;
+namespace TBot.Client.Domain.Parameters.Webhook;
 
 public class DeleteWebhookParameters : BaseParameters
 {

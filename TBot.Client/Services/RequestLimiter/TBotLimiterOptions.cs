@@ -1,4 +1,4 @@
-namespace TBot.Client.RequestLimiter;
+namespace TBot.Client.Services.RequestLimiter;
 
 public class TBotLimiterOptions
 {

@@ -12,25 +12,22 @@ namespace TBot.Client.AspNet;
 
 public static class Extensions
 {
-    
-    
-    
     public static IEndpointConventionBuilder UseTBot(
         this IEndpointRouteBuilder endpoints,
         Func<HttpContext, UpdateDto, Task> handler)
     {
         using var scope = endpoints.ServiceProvider.CreateScope();
-        var pattern = scope.ServiceProvider.GetRequiredService<IOptionsSnapshot<TBotOptions>>().Value.UpdatePath;
+        var pattern = scope.ServiceProvider.GetRequiredService<IOptionsSnapshot<BotOptions>>().Value.UpdatePath;
         return endpoints.UseTBot(pattern, handler);
     }
 
     public static IEndpointConventionBuilder UseTBot(
         this IEndpointRouteBuilder endpoints,
-        Action<TBotOptions> optionAction,
+        Action<BotOptions> optionAction,
         Func<HttpContext, UpdateDto, Task> handler)
     {
         using var scope = endpoints.ServiceProvider.CreateScope();
-        var options = scope.ServiceProvider.GetRequiredService<IOptionsSnapshot<TBotOptions>>().Value;
+        var options = scope.ServiceProvider.GetRequiredService<IOptionsSnapshot<BotOptions>>().Value;
         optionAction(options);
         return endpoints.UseTBot(options.UpdatePath, handler);
     }

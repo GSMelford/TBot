@@ -1,6 +1,4 @@
 using System.Text.Json.Serialization;
-using TBot.Telegram.Dto.InlineModes;
-using TBot.Telegram.Dto.Payments;
 using TBot.Telegram.Dto.Types;
 using ChosenInlineResultDto = TBot.Telegram.Dto.InlineModes.ChosenInlineResultDto;
 using InlineQueryDto = TBot.Telegram.Dto.InlineModes.InlineQueryDto;

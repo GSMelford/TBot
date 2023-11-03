@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace TBot.Client.Parameters.ReplyMarkupParameters.Buttons;
+namespace TBot.Client.Domain.Parameters.ReplyMarkupParameters.Buttons;
 
 public class InlineKeyboardButton : Button
 {
