@@ -1,10 +1,23 @@
-name: Test
+name: Processing Libraries
 on: 
   push: 
     branches: [master]
 jobs:
   test:
     runs-on: main
+    env:
+      NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
     steps:
-      - name: Echo
-        run: echo Test Runner
+    - name: Checkout
+      uses: actions/checkout@v3
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.x
+        cache: true
+        cache-dependency-path: subdir/packages.lock.json
+    - name: Restore
+      run: dotnet restore --locked-mode
+    - name: Publish
+      run: dotnet nuget push */bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
