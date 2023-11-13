@@ -14,3 +14,16 @@ jobs:
       run: dotnet pack
     - name: Publish
       run: dotnet nuget push .\nupkgs\*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+  notify:
+    runs-on: main
+    steps:
+    - name: send telegram message on push
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_CHAT_STATUS }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: |
+          ${{ github.actor }} publishted TBot.
+          Commit message: ${{ github.event.commits[0].message }}
+          Repository: ${{ github.repository }}
+          See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
