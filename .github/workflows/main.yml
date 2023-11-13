@@ -15,6 +15,4 @@ jobs:
     - name: Pack TBot
       run: dotnet pack
     - name: Publish
-      run: dotnet nuget push \"./nupkgs/*.nupkg\" --api-key $NUGET_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
-      env:
-        NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
+      run: dotnet nuget push "./nupkgs/*.nupkg" --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json --skip-duplicate
