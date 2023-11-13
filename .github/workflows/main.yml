@@ -15,7 +15,8 @@ jobs:
     - name: Publish
       run: dotnet nuget push .\nupkgs\*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json --skip-duplicate
   notify:
-    runs-on: main
+    needs: [nuget]
+    runs-on: raspberrypi
     steps:
     - name: send telegram message on push
       uses: appleboy/telegram-action@master
