@@ -11,7 +11,7 @@ jobs:
     - name: Restore
       run: dotnet restore --locked-mode
     - name: Build
-      run: dotnet --version && dotnet build -c Release
+      run: dotnet build -c Release
     - name: Pack TBot
       run: dotnet pack
     - name: Publish
