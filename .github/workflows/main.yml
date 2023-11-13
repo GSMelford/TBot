@@ -1,0 +1,10 @@
+name: Test
+on: 
+  push: 
+    branches: [master]
+jobs:
+  test:
+    runs-on: Windows-Main
+    steps:
+      - name: Echo
+        run: echo Test Runner
