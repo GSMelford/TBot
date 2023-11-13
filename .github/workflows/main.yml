@@ -4,7 +4,7 @@ on:
     branches: [master]
 jobs:
   test:
-    runs-on: Windows-Main
+    runs-on: main
     steps:
       - name: Echo
         run: echo Test Runner
