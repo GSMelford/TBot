@@ -25,6 +25,7 @@ jobs:
           -d '{
             "chat_id": "${{secrets.TELEGRAM_CHAT_STATUS}}",
             "text": " ${{ github.actor }} published TBot.
+            
             Commit message: ${{ github.event.commits[0].message }}
             Repository: ${{ github.repository }}
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}"
