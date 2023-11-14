@@ -4,7 +4,7 @@ on:
     branches: [master]
 jobs:
   nuget:
-    runs-on: main
+    runs-on: tbot-windows
     steps:
     - name: Checkout
       uses: actions/checkout@v3
