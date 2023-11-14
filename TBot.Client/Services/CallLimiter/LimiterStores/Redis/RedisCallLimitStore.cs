@@ -1,17 +1,18 @@
+using Microsoft.Extensions.Options;
 using StackExchange.Redis;
-using TBot.Client.Services.RequestLimiter.Interfaces;
+using TBot.Client.Domain.CallLimiter;
+using TBot.Client.Options.CallLimiter.Redis;
 using TBot.Client.Utilities;
 
-namespace TBot.Client.Services.RequestLimiter.LimiterStores;
+namespace TBot.Client.Services.CallLimiter.LimiterStores.Redis;
 
 public class RedisCallLimitStore : ICallLimitStore
 {
     private readonly IDatabase _redisDatabase;
 
-    public RedisCallLimitStore(string configurationString)
+    public RedisCallLimitStore(IOptions<RedisOption> redisOption)
     {
-        IConnectionMultiplexer connection = ConnectionMultiplexer.Connect(configurationString);
-        _redisDatabase = connection.GetDatabase();
+        _redisDatabase = ConnectionMultiplexer.Connect(redisOption.Value.ToString()).GetDatabase();
     }
 
     public async Task<bool> LockTakeAsync(string key)

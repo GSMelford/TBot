@@ -4,15 +4,10 @@ public class QueryParameter
 {
     public string Key { get; }
     public object? Value { get; }
-    public UrlEncode UrlEncode { get; }
         
-    public QueryParameter(
-        string key, 
-        object? value, 
-        UrlEncode urlEncode = UrlEncode.NoEncode)
+    public QueryParameter(string key, object? value)
     {
         Key = key;
         Value = value;
-        UrlEncode = urlEncode;
     }
 }

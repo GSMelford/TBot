@@ -1,13 +1,8 @@
-namespace TBot.Client.Services.RequestLimiter;
+namespace TBot.Client.Services.CallLimiter;
 
-public class TBotLimiterOptions
+public class CallLimiterOptions
 {
-    public TBotLimiterOptions()
-    {
-        
-    }
-    
-    public string StoreConnectionString { get; set; }
+    public string StoreConnectionString { get; set; } = null!;
     public string StoreName { get; set; } = "Default";
     public int ThreadInitialCount { get; set; } = 20;
     public int ThreadMaxCount { get; set; } = 20;

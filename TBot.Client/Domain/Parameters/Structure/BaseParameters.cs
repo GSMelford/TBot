@@ -1,9 +1,8 @@
 ﻿using System.Reflection;
 using TBot.Client.Domain.HttpRequests.Models;
-using TBot.Client.RequestArchitecture.Structure;
 using TBot.Client.Utilities;
 
-namespace TBot.Client.RequestArchitecture;
+namespace TBot.Client.Domain.Parameters.Structure;
 
 public class BaseParameters
 {
@@ -39,7 +38,7 @@ public class BaseParameters
             
             if (!IsDefaultValue(value))
             {
-                yield return new QueryParameter(parameterAttribute.Name, parameterAttribute.IsJson ? value.ToJson() : value, parameterAttribute.IsEncode);
+                yield return new QueryParameter(parameterAttribute.Name, parameterAttribute.IsJson ? value.ToJson() : value);
             }
             else if(parameterAttribute.Required)
             {

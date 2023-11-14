@@ -1,5 +1,4 @@
-﻿using TBot.Client.RequestArchitecture;
-using TBot.Client.RequestArchitecture.Structure;
+﻿using TBot.Client.Domain.Parameters.Structure;
 using TBot.Telegram.Dto.Types;
 
 namespace TBot.Client.Domain.Parameters;
