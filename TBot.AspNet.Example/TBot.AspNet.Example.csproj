@@ -6,4 +6,9 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\TBot.Client\TBot.Client.csproj" />
+      <ProjectReference Include="..\TBot.Telegram.Dto\TBot.Telegram.Dto.csproj" />
+    </ItemGroup>
+
 </Project>

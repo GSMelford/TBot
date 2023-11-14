@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace TBot.Client.Utilities;
 
-public static class SerializationExtensions
+internal static class SerializationExtensions
 {
-    public static T? ToObject<T>(this string? value)
+    internal static T? ToObject<T>(this string? value)
     {
         return string.IsNullOrEmpty(value) ? default : JsonConvert.DeserializeObject<T>(value);
     }
@@ -15,7 +15,7 @@ public static class SerializationExtensions
         return await System.Text.Json.JsonSerializer.DeserializeAsync<T>(stream, new JsonSerializerOptions());
     }
     
-    public static string ToJson<T>(this T? value)
+    internal static string ToJson<T>(this T? value)
     {
         return JsonConvert.SerializeObject(value);
     }

@@ -11,8 +11,8 @@ public class TBotRequestService : ITBotRequestService
         _httpClient = httpClient;
     }
 
-    public async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request)
+    public Task<HttpResponseMessage> SendAsync(HttpRequestMessage request)
     {
-        return await _httpClient.SendAsync(request);
+        return _httpClient.SendAsync(request);
     }
 }

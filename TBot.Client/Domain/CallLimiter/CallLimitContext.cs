@@ -1,12 +1,12 @@
-namespace TBot.Client.Services.RequestLimiter;
+namespace TBot.Client.Domain.CallLimiter;
 
 public class CallLimitContext
 {
-    private const long BUFFER_SECOND_TIME = 1;
-    public uint Counter { get; set; }
+    private const long BufferSecondTime = 1;
+    private uint Counter { get; set; }
     public int MaxCalls { get; init; }
     public TimeSpan Interval { get; init; }
-    public List<Call> Calls { get; set; } = new ();
+    private List<Call> Calls { get; set; } = new ();
 
     public void SaveCall()
     {
@@ -38,7 +38,7 @@ public class CallLimitContext
         }
         
         TimeSpan firstCallInterval = TimeSpan.FromSeconds(utcNow - firstCallTime.Value);
-        TimeSpan waitInterval = Interval.Add(TimeSpan.FromSeconds(BUFFER_SECOND_TIME)) - firstCallInterval;
+        TimeSpan waitInterval = Interval.Add(TimeSpan.FromSeconds(BufferSecondTime)) - firstCallInterval;
         return waitInterval.TotalSeconds < 0 ? TimeSpan.Zero : waitInterval;
     }
 

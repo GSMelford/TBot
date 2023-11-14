@@ -1,48 +1,37 @@
-﻿using TBot.Client;
-using TBot.Client.Domain.HttpRequests;
+﻿using Microsoft.Extensions.Options;
+using TBot.Client;
+using TBot.Client.Domain.LongPolling;
 using TBot.Client.Domain.Parameters;
-using TBot.Client.Interfaces;
-using TBot.Client.Interfaces.LongPolling;
+using TBot.Client.Domain.TBot;
+using TBot.Client.Options;
+using TBot.Client.Options.CallLimiter.Redis;
+using TBot.Client.Services.CallLimiter;
+using TBot.Client.Services.CallLimiter.LimiterStores.Redis;
 using TBot.Client.Services.HttpRequests;
 using TBot.Client.Services.LongPolling;
-using TBot.Telegram.Dto.Updates;
 
-Console.WriteLine("Hello, Telegram Bot!");
+var tBotOption = new OptionsWrapper<TBotOptions>(new TBotOptions { Token = "" });
+var limitConfig = new OptionsWrapper<CallLimiterOptions>(new CallLimiterOptions { StoreName = "TBot" });
 
-ITBotRequestService requestService = new TBotRequestService(new HttpClient());
-ITelegramBot bot = new TelegramBot(requestService, new BotOptions
+var requestService = new TBotRequestService(new HttpClient());
+var callService = new CallLimiterService(new RedisCallLimitStore(new OptionsWrapper<RedisOption>(new RedisOption
 {
-    BotToken = ""
+    Host = "",
+    Password = "",
+    DefaultDatabase = 1,
+    SyncTimeout = 1
+})));
+
+ITBotClient tBot = new TBotClientClient(tBotOption, requestService, limitConfig, callService);
+ILongPollingService longPollingService = new LongPollingService(tBot);
+
+longPollingService.Start(async dto =>
+{
+    await tBot.SendMessageAsync(new SendMessageParameters
+    {
+        Text = $"You: {dto.Message!.Text!}",
+        ChatId = dto.Message.From!.Id
+    });
 });
 
-var receiveService = new ReceiveService(bot, new UpdateService(bot));
-receiveService.StartGettingUpdate();
-
-while (true)
-{
-    if (Console.ReadKey().Key == ConsoleKey.E)
-    {
-        receiveService.StopGettingUpdate();
-        return;
-    }
-}
-
-internal class UpdateService : IUpdateService
-{
-    private readonly ITelegramBot _telegramBot;
-
-    public UpdateService(ITelegramBot telegramBot)
-    {
-        _telegramBot = telegramBot;
-    }
-
-    public async Task UpdateAsync(UpdateDto updateDto)
-    {
-        Console.WriteLine($"Client: {updateDto.Message?.Text}");
-        await _telegramBot.SendMessageAsync(new SendMessageParameters
-        {
-            Text = $"Your message: {updateDto.Message?.Text}",
-            ChatId = updateDto.Message!.From!.Id
-        });
-    }
-}
+Console.ReadKey();

@@ -4,9 +4,9 @@ using TBot.Client.Domain.Parameters;
 using TBot.Telegram.Dto.Types;
 using TBot.Telegram.Dto.Updates;
 
-namespace TBot.Client.Interfaces;
+namespace TBot.Client.Domain.TBot;
 
-public interface ITelegramBot
+public interface ITBotClient
 {
     Task<Result<MessageDto>> SendMessageAsync(SendMessageParameters parameters);
     Task<Result<List<UpdateDto>>> GetUpdateAsync(GetUpdateParameters parameters);
