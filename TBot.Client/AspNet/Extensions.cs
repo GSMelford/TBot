@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Routing;
 using TBot.Client.Domain.LongPolling;
+using TBot.Client.Domain.TBot.RequestIdentification;
 using TBot.Telegram.Dto.Updates;
 
 namespace TBot.Client.AspNet;
@@ -52,13 +53,15 @@ public static class Extensions
         return endpoints.MapPost(pattern,
             async context =>
             {
-                var update = await JsonSerializer.DeserializeAsync<UpdateDto>(context.Request.Body);
-                if (update == null)
-                {
+                var updateDto = await JsonSerializer.DeserializeAsync<UpdateDto>(context.Request.Body);
+                if (updateDto == null) {
                     throw new BadHttpRequestException("Couldn't deserialize an update dto.");
                 }
 
-                await handler(context, serviceProvider, update);
+                using (CurrentSessionThread.SetSession(Session.Create(Guid.NewGuid(), updateDto.Message!.Chat.Id)))
+                {
+                    await handler(context, serviceProvider, updateDto);
+                } //TODO: Consider the origin of the update in the Domain model
             });
     }
 }

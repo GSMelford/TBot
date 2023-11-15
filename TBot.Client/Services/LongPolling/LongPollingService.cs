@@ -2,6 +2,7 @@
 using TBot.Client.Domain.LongPolling;
 using TBot.Client.Domain.Parameters;
 using TBot.Client.Domain.TBot;
+using TBot.Client.Domain.TBot.RequestIdentification;
 using TBot.Client.Options;
 using TBot.Telegram.Dto.Updates;
 
@@ -42,7 +43,11 @@ public class LongPollingService : ILongPollingService
 
                 foreach (var updateDto in result.Response.Result!)
                 {
-                    await updateAction(updateDto);
+                    using (CurrentSessionThread.SetSession(Session.Create(Guid.NewGuid(), updateDto.Message!.Chat.Id)))
+                    {
+                        await updateAction(updateDto);
+                    } //TODO: Consider the origin of the update in the Domain model
+                    
                     UpdateParameters.Offset = updateDto.UpdateId + 1;
                 }
             }
