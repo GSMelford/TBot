@@ -3,6 +3,7 @@ using TBot.Client;
 using TBot.Client.Domain.LongPolling;
 using TBot.Client.Domain.Parameters;
 using TBot.Client.Domain.TBot;
+using TBot.Client.Domain.TBot.RequestIdentification;
 using TBot.Client.Options;
 using TBot.Client.Options.CallLimiter.Redis;
 using TBot.Client.Services.CallLimiter;
@@ -29,8 +30,8 @@ longPollingService.Start(async dto =>
 {
     await tBot.SendMessageAsync(new SendMessageParameters
     {
-        Text = $"You: {dto.Message!.Text!}",
-        ChatId = dto.Message.From!.Id
+        Text = $"SessionId: {CurrentSessionThread.Session?.Id}\nChatId: {CurrentSessionThread.Session?.ChatId}\nMessage:{dto.Message!.Text}",
+        ChatId = CurrentSessionThread.Session?.ChatId!
     });
 });
 
